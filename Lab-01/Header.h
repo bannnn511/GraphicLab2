@@ -13,6 +13,10 @@
 #include "glfw3.h"
 
 #include "DDA.hpp"
+#include "Bresenham.hpp"
 #include <iostream>
 
+void groundTruth(int, int, int, int);
+
 #endif /* Header_h */
+
