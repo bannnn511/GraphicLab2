@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		185336C52449DF60004C01D9 /* Bresenham.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185336C32449DF60004C01D9 /* Bresenham.cpp */; };
+		18BDACE4244A938700AD5C2F /* Midpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18BDACE2244A938700AD5C2F /* Midpoint.cpp */; };
 		18C8C514244878CB0082F1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C8C513244878CB0082F1A3 /* main.cpp */; };
 		18C8C51C244879600082F1A3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8C51B244879600082F1A3 /* OpenGL.framework */; };
 		18C8C51E244879B70082F1A3 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8C51D244879B70082F1A3 /* libGLEW.2.1.0.dylib */; };
@@ -30,6 +31,9 @@
 /* Begin PBXFileReference section */
 		185336C32449DF60004C01D9 /* Bresenham.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bresenham.cpp; sourceTree = "<group>"; };
 		185336C42449DF60004C01D9 /* Bresenham.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bresenham.hpp; sourceTree = "<group>"; };
+		18BDACE2244A938700AD5C2F /* Midpoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Midpoint.cpp; sourceTree = "<group>"; };
+		18BDACE3244A938700AD5C2F /* MidPoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MidPoint.hpp; sourceTree = "<group>"; };
+		18BDACE6244AF24800AD5C2F /* Line.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
 		18C8C510244878CB0082F1A3 /* Lab-01 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Lab-01"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C8C513244878CB0082F1A3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		18C8C51B244879600082F1A3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -80,6 +84,9 @@
 				18C8C52624489C570082F1A3 /* Header.h */,
 				185336C32449DF60004C01D9 /* Bresenham.cpp */,
 				185336C42449DF60004C01D9 /* Bresenham.hpp */,
+				18BDACE2244A938700AD5C2F /* Midpoint.cpp */,
+				18BDACE3244A938700AD5C2F /* MidPoint.hpp */,
+				18BDACE6244AF24800AD5C2F /* Line.hpp */,
 			);
 			path = "Lab-01";
 			sourceTree = "<group>";
@@ -152,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C8C514244878CB0082F1A3 /* main.cpp in Sources */,
+				18BDACE4244A938700AD5C2F /* Midpoint.cpp in Sources */,
 				18C8C524244896EB0082F1A3 /* DDA.cpp in Sources */,
 				185336C52449DF60004C01D9 /* Bresenham.cpp in Sources */,
 			);

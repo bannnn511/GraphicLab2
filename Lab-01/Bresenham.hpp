@@ -12,9 +12,15 @@
 #include <stdio.h>
 #include "Header.h"
 
-class Bresenham {
+class Bresenham: Line {
+private:
+    void drawLineLow(int x1, int y1, int x2, int y2);
+    void drawLineHigh(int x1, int y1, int x2, int y2);
 public:
-    void drawLine(int, int, int, int);
-    void drawLine2(int, int, int, int);
+    Bresenham(int x1, int y1, int x2, int y2):Line(x1, y1, x2, y2) {
+        
+    }
+    void drawLine();
+    
 };
 #endif /* Bresenham_hpp */

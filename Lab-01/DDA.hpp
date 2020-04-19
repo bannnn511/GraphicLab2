@@ -12,8 +12,11 @@
 #include <stdio.h>
 #include "Header.h"
 
-class DDA {
+class DDA: Line {
 public:
-    void drawLine(float, float, float, float);
+    DDA(int x1, int y1, int x2, int y2): Line(x1,y1,x2,y2) {
+        
+    };
+    void drawLine();
 };
 #endif /* DDA_hpp */

@@ -8,48 +8,90 @@
 
 #include "Bresenham.hpp"
 
-/// make this global đi an
-void putPixel(int x, int y) {
-    glBegin(GL_POINTS);
+
+void Bresenham::drawLine() {
+//    int dX = abs(x2 - x1);
+//    int dY = abs(y2 - y1);
+//    int p = 2*dY - dX;   //initial value
+//    int const1 = 2*dY;
+//    int const2 = 2*(dY-dX);
+//    int x = x1;
+//    int y = y1;
 //    glColor3f(0, 1, 0);
-    glVertex2f(x, y);
-    glEnd();
-}
-void Bresenham::drawLine(int x1, int y1, int x2, int y2) {
-    int dX = x2 - x1;
-    int dY = y2 - y1;
-    int p = 2*dY - dX;   //initial value
-    int const1 = 2*dY;
-    int const2 = 2*(dY-dX);
-    int x = x1;
-    int y = y1;
+//    putPixel(x, y);
+//
+//    while(x<x2) {
+//        if (p <0) {
+//            p += const1;
+//        } else {
+//            p += const2;
+//            if (y1<y2) {
+//                y = y + 1;
+//            } else {
+//                y = y -1;
+//            }
+//        }
+//        x=x+1;
+//        int x1 = x;
+//        int y1 = y;
+//        putPixel(x1, y1);
+////        putPixel(x, y);
+//    }
     glColor3f(0, 1, 0);
-    putPixel(x, y);
-    
-    while(x<x2) {
-        if (p <0) {
-            p += const1;
+    if (abs(y2-y1) < abs(x2-x1)) {
+        if (x1>x2) {
+            drawLineLow(x2,y2,x1,y1);
         } else {
-            p += const2;
-            y = y + 1;
+            drawLineLow(x1,y1,x2,y2);
         }
-        x=x+1;
-        putPixel(x, y);
+    } else {
+        if (y2>y1) {
+            drawLineHigh(x1,y1,x2,y2);
+        } else {
+            drawLineHigh(x2,y2,x1,y1);
+        }
     }
 }
 
-void Bresenham::drawLine2(int x1, int y1, int x2, int y2) {
-    int p = 2*(y2 - y1);
-    int incre = p - (x2 - x1);
-    for (int x = x1, y = y1; x <= x2; x++) {
-        glColor3f(1, 1, 0);
+void Bresenham::drawLineLow(int x1, int y1, int x2, int y2) {
+    int dX = x2 -x1;
+    int dY = y2 -y1;
+    int yi = 1;
+    if (dY<0) {
+        yi = -1;
+        dY = -dY;
+    }
+    int D = 2 * dY - dX;
+    int y = y1;
+    
+    for (int x = x1; x<=x2; x++) {
         putPixel(x, y);
-        incre += p;
-        if (incre >= 0) {
-            y++;
-            incre -= 2 * (x2 - y2);
+        if (D > 0) {
+            y += yi;
+            D = D - 2*dX;
         }
+        D = D + 2*dY;
     }
 }
+
+void Bresenham::drawLineHigh(int x1, int y1, int x2,int y2) {
+    int dX = x2 -x1;
+    int dY = y2 -y1;
+    int xi = 1;
+    if (dX<0) {
+        xi = -1;
+        dX = -dX;
+    }
+    int D = 2 * dX - dY;
+    int x = x1;
     
+    for (int y = y1; y<=y2; y++) {
+        putPixel(x, y);
+        if (D > 0) {
+            x += xi;
+            D = D - 2*dY;
+        }
+        D = D + 2*dX;
+    }
+}
 
