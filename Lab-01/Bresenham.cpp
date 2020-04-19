@@ -32,10 +32,7 @@ void Bresenham::drawLine() {
 //            }
 //        }
 //        x=x+1;
-//        int x1 = x;
-//        int y1 = y;
-//        putPixel(x1, y1);
-////        putPixel(x, y);
+//        putPixel(x, y);
 //    }
     glColor3f(0, 1, 0);
     if (abs(y2-y1) < abs(x2-x1)) {
