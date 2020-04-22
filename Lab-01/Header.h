@@ -18,6 +18,8 @@
 #include "Bresenham.hpp"
 #include "MidPoint.hpp"
 #include "Eclipse.hpp"
+#include "Parabola.hpp"
+#include "Hyperbola.hpp"
 
 #include <iostream>
 #include <cmath>

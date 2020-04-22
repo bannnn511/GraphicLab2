@@ -47,6 +47,8 @@ int main(int argc, const char * argv[]) {
     MidPoint mpt2 = MidPoint(500, 120, 70);
     
     Eclipse ecl = Eclipse(400, 300, 100, 150);
+    Parabola para = Parabola(50, 330, 0.02);
+    Hyperbola hbla = Hyperbola(200,200,80,90);
     
     while(!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
@@ -55,11 +57,13 @@ int main(int argc, const char * argv[]) {
 //        bsh2.drawLine();
 //        groundTruth(50, 50, 90, 10);
 //        groundTruth(20, 60 ,100, 300);
-        mpt.drawCircle();
-        mpt2.drawCircle();
+//        mpt.drawCircle();
+//        mpt2.drawCircle();
 //        circleTruth(300, 300, 100);
-        
-        ecl.drawEclipse();
+//
+//        ecl.drawEclipse();
+//        para.drawParabola();
+        hbla.drawHyperbola();
         
         glfwSwapBuffers(window);
         glfwPollEvents();
