@@ -13,9 +13,12 @@
 #include "glfw3.h"
 
 #include "Line.hpp"
+#include "Circle.hpp"
 #include "DDA.hpp"
 #include "Bresenham.hpp"
 #include "MidPoint.hpp"
+#include "Eclipse.hpp"
+
 #include <iostream>
 #include <cmath>
 

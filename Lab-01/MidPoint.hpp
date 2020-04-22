@@ -9,18 +9,11 @@
 #ifndef MidPoint_hpp
 #define MidPoint_hpp
 
-#include <stdio.h>
+#include "Header.h"
 
-class MidPoint {
-private:
-    int r;
-    int x;
-    int y;
+class MidPoint: Circle {
 public:
-    MidPoint(int x, int y, int r) {
-        this-> x = x;
-        this-> y = y;
-        this-> r = r;
+    MidPoint(int x, int y, int r): Circle(x,y,r) {
     }
     void drawCircle();
     int fCircle(int, int);

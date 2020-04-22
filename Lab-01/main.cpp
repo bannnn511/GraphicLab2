@@ -43,17 +43,24 @@ int main(int argc, const char * argv[]) {
     DDA dda = DDA(0, 0, 20, 100);
     Bresenham bsh = Bresenham(50, 50, 90, 10);
     Bresenham bsh2 = Bresenham(20, 60 ,100, 300);
-    MidPoint mpt = MidPoint(300, 300, 100);
+    MidPoint mpt = MidPoint(300, 120, 70);
+    MidPoint mpt2 = MidPoint(500, 120, 70);
     
+    Eclipse ecl = Eclipse(400, 300, 100, 150);
     
     while(!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        bsh.drawLine();
-        bsh2.drawLine();
-//        groundTruth(0, 0, 20, 100);
-//        mpt.drawCircle();
+//        bsh.drawLine();
+//        bsh2.drawLine();
+//        groundTruth(50, 50, 90, 10);
+//        groundTruth(20, 60 ,100, 300);
+        mpt.drawCircle();
+        mpt2.drawCircle();
 //        circleTruth(300, 300, 100);
+        
+        ecl.drawEclipse();
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

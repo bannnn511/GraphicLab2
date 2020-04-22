@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180B9F39244F32E6008BB5EF /* Eclipse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F37244F32E6008BB5EF /* Eclipse.cpp */; };
 		185336C52449DF60004C01D9 /* Bresenham.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185336C32449DF60004C01D9 /* Bresenham.cpp */; };
 		18BDACE4244A938700AD5C2F /* Midpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18BDACE2244A938700AD5C2F /* Midpoint.cpp */; };
 		18C8C514244878CB0082F1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C8C513244878CB0082F1A3 /* main.cpp */; };
@@ -29,6 +30,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		180B9F36244EF5DB008BB5EF /* Circle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Circle.hpp; sourceTree = "<group>"; };
+		180B9F37244F32E6008BB5EF /* Eclipse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Eclipse.cpp; sourceTree = "<group>"; };
+		180B9F38244F32E6008BB5EF /* Eclipse.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Eclipse.hpp; sourceTree = "<group>"; };
 		185336C32449DF60004C01D9 /* Bresenham.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bresenham.cpp; sourceTree = "<group>"; };
 		185336C42449DF60004C01D9 /* Bresenham.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bresenham.hpp; sourceTree = "<group>"; };
 		18BDACE2244A938700AD5C2F /* Midpoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Midpoint.cpp; sourceTree = "<group>"; };
@@ -87,6 +91,9 @@
 				18BDACE2244A938700AD5C2F /* Midpoint.cpp */,
 				18BDACE3244A938700AD5C2F /* MidPoint.hpp */,
 				18BDACE6244AF24800AD5C2F /* Line.hpp */,
+				180B9F36244EF5DB008BB5EF /* Circle.hpp */,
+				180B9F37244F32E6008BB5EF /* Eclipse.cpp */,
+				180B9F38244F32E6008BB5EF /* Eclipse.hpp */,
 			);
 			path = "Lab-01";
 			sourceTree = "<group>";
@@ -160,6 +167,7 @@
 			files = (
 				18C8C514244878CB0082F1A3 /* main.cpp in Sources */,
 				18BDACE4244A938700AD5C2F /* Midpoint.cpp in Sources */,
+				180B9F39244F32E6008BB5EF /* Eclipse.cpp in Sources */,
 				18C8C524244896EB0082F1A3 /* DDA.cpp in Sources */,
 				185336C52449DF60004C01D9 /* Bresenham.cpp in Sources */,
 			);

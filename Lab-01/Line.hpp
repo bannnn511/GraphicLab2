@@ -26,7 +26,9 @@ public:
         this->x2 = x2;
         this->y2 = y2;
     }
-    void drawLine();
+    
+    virtual void drawLine() {
+    }
 
 };
 #endif /* Shape_hpp */
