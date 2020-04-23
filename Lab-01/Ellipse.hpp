@@ -6,25 +6,25 @@
 //  Copyright © 2020 An Binh Ha. All rights reserved.
 //
 
-#ifndef Eclipse_hpp
-#define Eclipse_hpp
+#ifndef Ellipse_hpp
+#define Ellipse_hpp
 
 #include <stdio.h>
 
-class Eclipse {
+class Ellipse {
 private:
     int x;
     int y;
     int rA;
     int rB;
 public:
-    Eclipse(int x, int y, int rA, int rB) {
+    Ellipse(int x, int y, int rA, int rB) {
         this-> x = x;
         this->y = y;
         this->rA = rA;
         this->rB = rB;
     }
-    void drawEclipse();
+    void drawEllipse();
 };
 
 #endif /* Eclipse_hpp */

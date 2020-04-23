@@ -24,7 +24,7 @@ public:
         this->y = y;
         this->rA = rA;
         this->rB = rB;
-    }
+    };
     
     void drawHyperbola();
 };

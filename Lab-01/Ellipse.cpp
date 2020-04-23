@@ -8,7 +8,7 @@
 
 #include "Header.h"
 
-void Eclipse::drawEclipse() {
+void Ellipse::drawEllipse() {
     glColor3f(0.5, 0.5, 0.5);
     float dx, dy, d1, d2;
     float x1 = 0;

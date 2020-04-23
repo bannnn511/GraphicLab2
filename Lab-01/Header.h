@@ -17,15 +17,28 @@
 #include "DDA.hpp"
 #include "Bresenham.hpp"
 #include "MidPoint.hpp"
-#include "Eclipse.hpp"
+#include "Ellipse.hpp"
 #include "Parabola.hpp"
 #include "Hyperbola.hpp"
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <iterator>
+#include <vector>
 #include <cmath>
+#include <chrono>
+#include <thread>
+
+//using namespace std;
+std::vector< std::vector<int> > readFile();
+void drawShape(std::vector<std::vector<int>> data);
 
 void groundTruth(int, int, int, int);
 void circleTruth(int, int ,int);
+void ellipseTruth(int x, int y, int a, int b);
+void parabolaTruth();
+
 void putPixel(int, int);
 #endif /* Header_h */
 
