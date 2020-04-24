@@ -11,6 +11,7 @@
 		180B9F3C24500072008BB5EF /* Parabola.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F3A24500072008BB5EF /* Parabola.cpp */; };
 		180B9F3F2450532B008BB5EF /* Hyperbola.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F3D2450532B008BB5EF /* Hyperbola.cpp */; };
 		185336C52449DF60004C01D9 /* Bresenham.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185336C32449DF60004C01D9 /* Bresenham.cpp */; };
+		18AF85DA245271BE00A9CEDC /* Pixel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AF85D9245271BE00A9CEDC /* Pixel.cpp */; };
 		18BDACE4244A938700AD5C2F /* Midpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18BDACE2244A938700AD5C2F /* Midpoint.cpp */; };
 		18C8C514244878CB0082F1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C8C513244878CB0082F1A3 /* main.cpp */; };
 		18C8C51C244879600082F1A3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8C51B244879600082F1A3 /* OpenGL.framework */; };
@@ -41,6 +42,7 @@
 		180B9F3E2450532B008BB5EF /* Hyperbola.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hyperbola.hpp; sourceTree = "<group>"; };
 		185336C32449DF60004C01D9 /* Bresenham.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bresenham.cpp; sourceTree = "<group>"; };
 		185336C42449DF60004C01D9 /* Bresenham.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bresenham.hpp; sourceTree = "<group>"; };
+		18AF85D9245271BE00A9CEDC /* Pixel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pixel.cpp; sourceTree = "<group>"; };
 		18BDACE2244A938700AD5C2F /* Midpoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Midpoint.cpp; sourceTree = "<group>"; };
 		18BDACE3244A938700AD5C2F /* MidPoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MidPoint.hpp; sourceTree = "<group>"; };
 		18BDACE6244AF24800AD5C2F /* Line.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				180B9F3B24500072008BB5EF /* Parabola.hpp */,
 				180B9F3D2450532B008BB5EF /* Hyperbola.cpp */,
 				180B9F3E2450532B008BB5EF /* Hyperbola.hpp */,
+				18AF85D9245271BE00A9CEDC /* Pixel.cpp */,
 			);
 			path = "Lab-01";
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				18C8C514244878CB0082F1A3 /* main.cpp in Sources */,
 				180B9F3C24500072008BB5EF /* Parabola.cpp in Sources */,
 				18BDACE4244A938700AD5C2F /* Midpoint.cpp in Sources */,
+				18AF85DA245271BE00A9CEDC /* Pixel.cpp in Sources */,
 				180B9F39244F32E6008BB5EF /* Ellipse.cpp in Sources */,
 				18C8C524244896EB0082F1A3 /* DDA.cpp in Sources */,
 				185336C52449DF60004C01D9 /* Bresenham.cpp in Sources */,
