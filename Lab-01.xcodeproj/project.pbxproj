@@ -10,6 +10,8 @@
 		180B9F39244F32E6008BB5EF /* Ellipse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F37244F32E6008BB5EF /* Ellipse.cpp */; };
 		180B9F3C24500072008BB5EF /* Parabola.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F3A24500072008BB5EF /* Parabola.cpp */; };
 		180B9F3F2450532B008BB5EF /* Hyperbola.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F3D2450532B008BB5EF /* Hyperbola.cpp */; };
+		180F4C5F24571BD6002612A2 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F4C5E24571BD6002612A2 /* GLUT.framework */; };
+		180F4C6A24573361002612A2 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180F4C6824573361002612A2 /* Menu.cpp */; };
 		185336C52449DF60004C01D9 /* Bresenham.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185336C32449DF60004C01D9 /* Bresenham.cpp */; };
 		18AF85DA245271BE00A9CEDC /* Pixel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AF85D9245271BE00A9CEDC /* Pixel.cpp */; };
 		18BDACE4244A938700AD5C2F /* Midpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18BDACE2244A938700AD5C2F /* Midpoint.cpp */; };
@@ -40,6 +42,9 @@
 		180B9F3B24500072008BB5EF /* Parabola.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Parabola.hpp; sourceTree = "<group>"; };
 		180B9F3D2450532B008BB5EF /* Hyperbola.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Hyperbola.cpp; sourceTree = "<group>"; };
 		180B9F3E2450532B008BB5EF /* Hyperbola.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hyperbola.hpp; sourceTree = "<group>"; };
+		180F4C5E24571BD6002612A2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		180F4C6824573361002612A2 /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		180F4C6924573361002612A2 /* Menu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Menu.hpp; sourceTree = "<group>"; };
 		185336C32449DF60004C01D9 /* Bresenham.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bresenham.cpp; sourceTree = "<group>"; };
 		185336C42449DF60004C01D9 /* Bresenham.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bresenham.hpp; sourceTree = "<group>"; };
 		18AF85D9245271BE00A9CEDC /* Pixel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pixel.cpp; sourceTree = "<group>"; };
@@ -61,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180F4C5F24571BD6002612A2 /* GLUT.framework in Frameworks */,
 				18C8C520244879D70082F1A3 /* libglfw.3.3.dylib in Frameworks */,
 				18C8C51E244879B70082F1A3 /* libGLEW.2.1.0.dylib in Frameworks */,
 				18C8C51C244879600082F1A3 /* OpenGL.framework in Frameworks */,
@@ -70,6 +76,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180F4C6024571C47002612A2 /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				185336C32449DF60004C01D9 /* Bresenham.cpp */,
+				185336C42449DF60004C01D9 /* Bresenham.hpp */,
+				180B9F36244EF5DB008BB5EF /* Circle.hpp */,
+				18C8C522244896EB0082F1A3 /* DDA.cpp */,
+				18C8C523244896EB0082F1A3 /* DDA.hpp */,
+				180B9F37244F32E6008BB5EF /* Ellipse.cpp */,
+				180B9F38244F32E6008BB5EF /* Ellipse.hpp */,
+				180B9F3D2450532B008BB5EF /* Hyperbola.cpp */,
+				180B9F3E2450532B008BB5EF /* Hyperbola.hpp */,
+				18BDACE6244AF24800AD5C2F /* Line.hpp */,
+				18BDACE2244A938700AD5C2F /* Midpoint.cpp */,
+				18BDACE3244A938700AD5C2F /* MidPoint.hpp */,
+				180B9F3A24500072008BB5EF /* Parabola.cpp */,
+				180B9F3B24500072008BB5EF /* Parabola.hpp */,
+			);
+			path = Shape;
+			sourceTree = "<group>";
+		};
 		18C8C507244878CB0082F1A3 = {
 			isa = PBXGroup;
 			children = (
@@ -90,23 +117,12 @@
 		18C8C512244878CB0082F1A3 /* Lab-01 */ = {
 			isa = PBXGroup;
 			children = (
+				180F4C6024571C47002612A2 /* Shape */,
 				18C8C513244878CB0082F1A3 /* main.cpp */,
-				18C8C522244896EB0082F1A3 /* DDA.cpp */,
-				18C8C523244896EB0082F1A3 /* DDA.hpp */,
 				18C8C52624489C570082F1A3 /* Header.h */,
-				185336C32449DF60004C01D9 /* Bresenham.cpp */,
-				185336C42449DF60004C01D9 /* Bresenham.hpp */,
-				18BDACE2244A938700AD5C2F /* Midpoint.cpp */,
-				18BDACE3244A938700AD5C2F /* MidPoint.hpp */,
-				18BDACE6244AF24800AD5C2F /* Line.hpp */,
-				180B9F36244EF5DB008BB5EF /* Circle.hpp */,
-				180B9F37244F32E6008BB5EF /* Ellipse.cpp */,
-				180B9F38244F32E6008BB5EF /* Ellipse.hpp */,
-				180B9F3A24500072008BB5EF /* Parabola.cpp */,
-				180B9F3B24500072008BB5EF /* Parabola.hpp */,
-				180B9F3D2450532B008BB5EF /* Hyperbola.cpp */,
-				180B9F3E2450532B008BB5EF /* Hyperbola.hpp */,
 				18AF85D9245271BE00A9CEDC /* Pixel.cpp */,
+				180F4C6824573361002612A2 /* Menu.cpp */,
+				180F4C6924573361002612A2 /* Menu.hpp */,
 			);
 			path = "Lab-01";
 			sourceTree = "<group>";
@@ -114,6 +130,7 @@
 		18C8C51A2448795F0082F1A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				180F4C5E24571BD6002612A2 /* GLUT.framework */,
 				18C8C51F244879D70082F1A3 /* libglfw.3.3.dylib */,
 				18C8C51D244879B70082F1A3 /* libGLEW.2.1.0.dylib */,
 				18C8C51B244879600082F1A3 /* OpenGL.framework */,
@@ -178,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180F4C6A24573361002612A2 /* Menu.cpp in Sources */,
 				180B9F3F2450532B008BB5EF /* Hyperbola.cpp in Sources */,
 				18C8C514244878CB0082F1A3 /* main.cpp in Sources */,
 				180B9F3C24500072008BB5EF /* Parabola.cpp in Sources */,

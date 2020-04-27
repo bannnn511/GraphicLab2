@@ -7,17 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5F8C1F32-AFCD-4194-A787-67C3B63C81B3"
+            uuid = "A1AE0145-E2B0-4B10-AB25-4DC2EAF4D555"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lab-01/main.cpp"
+            filePath = "Lab-01/Shape/DDA.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "capture(window)"
-            landmarkType = "9">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DDA::drawLine()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

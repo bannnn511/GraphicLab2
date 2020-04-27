@@ -13,60 +13,48 @@
 
 const GLint WIDTH = 800, HEIGHT = 500;
 
-typedef struct
-{
-    u_char head[12];
-    u_short dx /* Width */, dy /* Height */, head2;
-    u_char pic[768 * 1024 * 10][3];
-} typetga;
-
-typetga tga;
-
-char captureName[256];
-u_long captureNo;
-u_char tgahead[12] = {0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-
-int main(int argc, const char * argv[]) {
-    if (!glfwInit()) {
-        glfwTerminate();
-        return -1;
-    }
+//MARK:- MAIN
+int main(int argc, char * argv[]) {
     
-    GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Lab 01", nullptr, nullptr);
-    
-    if(!window) {
-        glfwTerminate();
-        return -1;
-    }
-    
-    glfwMakeContextCurrent(window);
-    glClearColor(0.0,0.0,0.0,0.0);
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+    glutInitWindowPosition(100,100);
+    glutInitWindowSize(WIDTH,HEIGHT);
+    glutCreateWindow("Lab2");
+      
+    init();
+    glutDisplayFunc(display);
+
+    createPopupMenu();
+    glutMainLoop();
+    return 0;
+}
+
+//MARK: INIT
+void init() {
+    glClearColor(0, 0, 0, 0);
+
+    glViewport(0, 0, WIDTH, HEIGHT);
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0.0,WIDTH,0.0,HEIGHT,0.0,100.0);
-    glPointSize(5);
-    
-    if(glewInit() != GLEW_OK) {
-        glfwTerminate();
-        return -1;
-    }
-    
-    std::vector<std::vector<int>> data = readFile();
-    
-    while(!glfwWindowShouldClose(window)) {
-        glClear(GL_COLOR_BUFFER_BIT);
 
-        drawShape(data);
-//        capture(window);
-        
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-        
-//        std::this_thread::sleep_for(std::chrono::seconds(60));
-    }
-    
-    glfwTerminate();
-    return 0;
+    glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    glPointSize(5);
+}
+
+//MARK:- DISPLAY
+void display(void) {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    std::vector<std::vector<int>> data = readFile();
+    drawShape(data);
+ 
+
+    glutSwapBuffers();
 }
 
 void groundTruth(int x1, int y1, int x2, int y2) {
@@ -143,39 +131,28 @@ std::vector<std::vector<int>> readFile() {
     return data;
 }
 
-void capture(GLFWwindow* window)
-{
+void capture(GLFWwindow* window){
     int screenWidth, screenHeight;
-    glfwGetFramebufferSize(window, &screenWidth, &screenHeight); /* Get size, store into specified variables  */
-    
-    /* Prepare the targa header */
-    memcpy(tga.head, tgahead, 12);
-    tga.dx = screenWidth;
-    tga.dy = screenHeight;
-    tga.head2 = 0x2018;
-    
-    /* Store pixels into tga.pic */
-    
-    glReadPixels(0, 0, screenWidth, screenHeight, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, tga.pic[0]);
-//    std::cout<<tga.pic[0]<<std::endl;
-    for (int i= 0; i< (768 * 1024 );i++) {
-        if(tga.pic[i][0] != 0 || tga.pic[i][1] != 0 || tga.pic[i][2] != 0) {
-            std::cout<<"Index: "<<i<<std::endl;
-            int x = tga.pic[i][0];
-            int y = tga.pic[i][1];
-            int z = tga.pic[i][2];
-            std::cout<<"x: "<<x<<" y: "<<y<<" z: "<<z<<std::endl;
+
+    glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
+    GLfloat *p;
+    p = new GLfloat[3*WIDTH * HEIGHT];
+    glReadPixels(0, 0, WIDTH, HEIGHT, GL_RGB, GL_FLOAT, p);
+    for (int a = 0; a < 3*WIDTH * HEIGHT-2; a = a + 3) {
+        //cout << p[i] << endl;
+        int i = a;
+        if (p[i] == float(0) && p[i+1] == float(0) && p[i+2]== float(1)) {
+            float row = i / ( 3*(screenHeight-1));
+            float column = i / ( 3*(screenWidth-1));
+            std::cout << row << " " << column << std::endl;
+            glBegin(GL_POINTS);
+            glVertex2i(row, column);
+            glEnd();
         }
     }
-    /* Store "Capture_%04lu.tga" + captureNo into captureName, increase frame count */
-//    sprintf(captureName, "Capture_%04lu.tga" /* 'lu' for unsigned long */, captureNo); captureNo++;
-//
-//    /* Write file */
-//    FILE* cc = fopen(captureName, "wb");
-//    fwrite(&tga, 1, (18 + 3 * screenWidth * screenHeight), cc);
-//    fclose(cc);
 }
 
+//MARK:- Draw shape
 void drawShape(std::vector<std::vector<int>> data) {
     for (int i=0; i<data.size(); i++) {
         int jump = data[i][0];
@@ -252,6 +229,7 @@ void drawShape(std::vector<std::vector<int>> data) {
     }
 }
 
+//MARK: MSE
 void calculateMSE(std::vector<Pixel> data, std::vector<Pixel> standard) {
     int d = 0;
     int se = 0;
