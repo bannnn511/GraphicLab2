@@ -11,27 +11,32 @@
 
 #include "Header.h"
 
-const GLint WIDTH = 800, HEIGHT = 500;
-
 //MARK:- MAIN
 int main(int argc, char * argv[]) {
     
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(100,100);
-    glutInitWindowSize(WIDTH,HEIGHT);
+    glutInitWindowSize(WIDTH, HEIGHT);
     glutCreateWindow("Lab2");
       
     init();
+    
+    Mouse *mouse = mouse->getInstance();
+    glutMouseFunc(mouse->mouseButton);
+    glutMotionFunc(mouse->mouseMove);
+    
+    createPopupMenu();
     glutDisplayFunc(display);
 
-    createPopupMenu();
+    glEnable(GL_DEPTH_TEST);
     glutMainLoop();
     return 0;
 }
 
 //MARK: INIT
 void init() {
+    
     glClearColor(0, 0, 0, 0);
 
     glViewport(0, 0, WIDTH, HEIGHT);
@@ -42,7 +47,6 @@ void init() {
     glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
 
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
 
     glPointSize(5);
 }
@@ -52,7 +56,14 @@ void display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     std::vector<std::vector<int>> data = readFile();
     drawShape(data);
- 
+    if (!pts.empty()) {
+        glBegin(GL_LINE_STRIP);
+        for (auto pt: pts)
+            glVertex2i(pt.x, pt.y);
+        auto endPt = stopDraw? pts.front() : currentPxl;
+        glVertex2f(endPt.x, endPt.y);
+        glEnd();
+    }
 
     glutSwapBuffers();
 }
@@ -240,4 +251,24 @@ void calculateMSE(std::vector<Pixel> data, std::vector<Pixel> standard) {
     float mse = se/(data.size()-1);
     std::cout<<"Sum error: "<<se<<std::endl;
     std::cout<<"Mean square err: "<<mse<<std::endl;
+}
+
+void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integer
+   // Compute aspect ratio of the new window
+   if (height == 0) height = 1;                // To prevent divide by 0
+   GLfloat aspect = (GLfloat)width / (GLfloat)height;
+ 
+   // Set the viewport to cover the new window
+   glViewport(0, 0, width, height);
+ 
+   // Set the aspect ratio of the clipping area to match the viewport
+   glMatrixMode(GL_PROJECTION);  // To operate on the Projection matrix
+   glLoadIdentity();             // Reset the projection matrix
+   if (width >= height) {
+     // aspect >= 1, set the height from -1 to 1, with larger width
+      gluOrtho2D(-1.0 * aspect, 1.0 * aspect, -1.0, 1.0);
+   } else {
+      // aspect < 1, set the width to -1 to 1, with larger height
+     gluOrtho2D(-1.0, 1.0, -1.0 / aspect, 1.0 / aspect);
+   }
 }

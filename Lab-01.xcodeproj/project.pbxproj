@@ -20,6 +20,7 @@
 		18C8C51E244879B70082F1A3 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8C51D244879B70082F1A3 /* libGLEW.2.1.0.dylib */; };
 		18C8C520244879D70082F1A3 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8C51F244879D70082F1A3 /* libglfw.3.3.dylib */; };
 		18C8C524244896EB0082F1A3 /* DDA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C8C522244896EB0082F1A3 /* DDA.cpp */; };
+		18F4929A2457DD9800B18015 /* Mouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F492982457DD9800B18015 /* Mouse.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +60,8 @@
 		18C8C522244896EB0082F1A3 /* DDA.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DDA.cpp; sourceTree = "<group>"; };
 		18C8C523244896EB0082F1A3 /* DDA.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DDA.hpp; sourceTree = "<group>"; };
 		18C8C52624489C570082F1A3 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		18F492982457DD9800B18015 /* Mouse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mouse.cpp; sourceTree = "<group>"; };
+		18F492992457DD9800B18015 /* Mouse.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mouse.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 				18AF85D9245271BE00A9CEDC /* Pixel.cpp */,
 				180F4C6824573361002612A2 /* Menu.cpp */,
 				180F4C6924573361002612A2 /* Menu.hpp */,
+				18F492982457DD9800B18015 /* Mouse.cpp */,
+				18F492992457DD9800B18015 /* Mouse.hpp */,
 			);
 			path = "Lab-01";
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				180F4C6A24573361002612A2 /* Menu.cpp in Sources */,
+				18F4929A2457DD9800B18015 /* Mouse.cpp in Sources */,
 				180B9F3F2450532B008BB5EF /* Hyperbola.cpp in Sources */,
 				18C8C514244878CB0082F1A3 /* main.cpp in Sources */,
 				180B9F3C24500072008BB5EF /* Parabola.cpp in Sources */,

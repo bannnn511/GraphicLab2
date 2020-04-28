@@ -10,6 +10,20 @@
 
 
 void processMainMenu(int option) {
+    switch (option) {
+    case 0:
+        std::cout<<"Circle"<<std::endl;
+            break;
+    case 1:
+        std::cout<<"Ellipse"<<std::endl;
+            break;
+    case 2:
+        std::cout<<"Rectangle"<<std::endl;
+            break;
+    case 3:
+        std::cout<<"Polygon"<<std::endl;
+            break;
+    }
 }
 
 void createPopupMenu() {

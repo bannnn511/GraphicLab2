@@ -14,7 +14,6 @@
 #include "glfw3.h"
 
 #include <GLUT/GLUT.h>
-#include <OpenGL/gl3.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -24,6 +23,7 @@
 #include <chrono>
 #include <thread>
 #include <algorithm>
+#include <array>
 
 #include "Pixel.cpp"
 #include "Line.hpp"
@@ -35,10 +35,17 @@
 #include "Parabola.hpp"
 #include "Hyperbola.hpp"
 #include "Menu.hpp"
+#include "Mouse.hpp"
 
 //MARK:- WINDOW
 static int window; 
 static int menuFlag = 0;
+
+inline Pixel currentPxl = Pixel(-1,-1);
+inline std::vector<Pixel> pts;
+inline bool stopDraw;
+
+static const GLint WIDTH = 800, HEIGHT = 500;
 
 void init();
 std::vector< std::vector<int> > readFile();
@@ -51,7 +58,7 @@ void calculateMSE(std::vector<Pixel>, std::vector<Pixel>);
 void putPixel(int, int);
 void display(void);
 void drawShape(std::vector<std::vector<int>> data);
-
+void reshape(GLsizei width, GLsizei height);
 
 void groundTruth(int, int, int, int);
 void circleTruth(int, int ,int);
