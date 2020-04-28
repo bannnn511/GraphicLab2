@@ -45,7 +45,9 @@ inline Pixel currentPxl = Pixel(-1,-1);
 inline std::vector<Pixel> pts;
 inline bool stopDraw;
 
-static const GLint WIDTH = 800, HEIGHT = 500;
+inline bool rectangle = false;
+
+static const int WIDTH = 800, HEIGHT = 500;
 
 void init();
 std::vector< std::vector<int> > readFile();

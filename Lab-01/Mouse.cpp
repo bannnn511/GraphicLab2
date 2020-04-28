@@ -12,6 +12,8 @@ Mouse *Mouse::mouse = 0;
 
 void Mouse::mouseButton(int button, int state, int x, int y) {
     currentPxl = Pixel(x,HEIGHT-y);
+    mouse->setXorigin(x);
+    mouse->setYorigin(HEIGHT-y);
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         if (stopDraw) {
             pts.clear();
@@ -20,7 +22,8 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
         std::cout<<"Push cooor: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
         pts.push_back(currentPxl);
     }
-    else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ) {
+    if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ) {
+        std::cout<<"End point:"<<x<<"- "<<y<<std::endl;
         stopDraw = true;
     }
     glutPostRedisplay();

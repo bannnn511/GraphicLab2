@@ -27,9 +27,9 @@ int main(int argc, char * argv[]) {
     glutMotionFunc(mouse->mouseMove);
     
     createPopupMenu();
+    
     glutDisplayFunc(display);
 
-    glEnable(GL_DEPTH_TEST);
     glutMainLoop();
     return 0;
 }
@@ -54,15 +54,33 @@ void init() {
 //MARK:- DISPLAY
 void display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    std::vector<std::vector<int>> data = readFile();
-    drawShape(data);
-    if (!pts.empty()) {
-        glBegin(GL_LINE_STRIP);
-        for (auto pt: pts)
-            glVertex2i(pt.x, pt.y);
-        auto endPt = stopDraw? pts.front() : currentPxl;
-        glVertex2f(endPt.x, endPt.y);
-        glEnd();
+//    std::vector<std::vector<int>> data = readFile();
+//    drawShape(data);
+    
+//    if (!pts.empty() && stopDraw!=true) {
+//        glBegin(GL_LINE_STRIP);
+//        for (auto pt: pts)
+//            glVertex2i(pt.x, pt.y);
+//        auto endPt = stopDraw? pts.front() : currentPxl;
+//        glVertex2f(endPt.x, endPt.y);
+//        glEnd();
+//    }
+    Mouse *mouse = mouse->getInstance();
+    
+    if (rectangle==true) {
+        int x1 = mouse->getXorigin();
+        int y1 = mouse->getYorigin();
+        int x2 = currentPxl.x;
+        int y2 = currentPxl.y;
+        Bresenham bsh = Bresenham(x1, y1, x2, y1);
+        bsh.drawLine();
+        bsh = Bresenham(x2,y1,x2,y2);
+        bsh.drawLine();
+        bsh = Bresenham(x1, y2, x2, y2);
+        bsh.drawLine();
+        bsh = Bresenham(x1, y1, x1, y2);
+        bsh.drawLine();
+        
     }
 
     glutSwapBuffers();

@@ -12,16 +12,17 @@
 void processMainMenu(int option) {
     switch (option) {
     case 0:
-        std::cout<<"Circle"<<std::endl;
+            std::cout<<"Circle"<<std::endl;
             break;
     case 1:
-        std::cout<<"Ellipse"<<std::endl;
+            std::cout<<"Ellipse"<<std::endl;
             break;
     case 2:
-        std::cout<<"Rectangle"<<std::endl;
+            std::cout<<"Rectangle"<<std::endl;
+            rectangle= true;
             break;
     case 3:
-        std::cout<<"Polygon"<<std::endl;
+            std::cout<<"Polygon"<<std::endl;
             break;
     }
 }
