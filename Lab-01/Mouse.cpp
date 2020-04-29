@@ -22,10 +22,14 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
         std::cout<<"Push cooor: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
         pts.push_back(currentPxl);
     }
-    if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ) {
-        std::cout<<"End point:"<<x<<"- "<<y<<std::endl;
-        stopDraw = true;
+    if(button == GLUT_LEFT_BUTTON && state==GLUT_UP) {
+         std::cout<<"End point:"<<x<<"- "<<y<<std::endl;
+        stopDraw == true;
     }
+//    if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ) {
+//        std::cout<<"End point:"<<x<<"- "<<y<<std::endl;
+//        stopDraw = true;
+//    }
     glutPostRedisplay();
 }
 

@@ -16,5 +16,6 @@
 void processMainMenu(int option);
 void createPopupMenu();
 void processMenuStatus(int status, int x, int y);
+void clearMenu();
 
 #endif /* Menu_hpp */

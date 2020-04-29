@@ -54,8 +54,8 @@ void init() {
 //MARK:- DISPLAY
 void display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    std::vector<std::vector<int>> data = readFile();
-//    drawShape(data);
+    std::vector<std::vector<int>> data = readFile();
+    drawShape(data);
     
 //    if (!pts.empty() && stopDraw!=true) {
 //        glBegin(GL_LINE_STRIP);

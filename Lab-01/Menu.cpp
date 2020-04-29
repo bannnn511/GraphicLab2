@@ -12,16 +12,20 @@
 void processMainMenu(int option) {
     switch (option) {
     case 0:
+            clearMenu();
             std::cout<<"Circle"<<std::endl;
             break;
     case 1:
+            clearMenu();
             std::cout<<"Ellipse"<<std::endl;
             break;
     case 2:
+            clearMenu();
             std::cout<<"Rectangle"<<std::endl;
             rectangle= true;
             break;
     case 3:
+            clearMenu();
             std::cout<<"Polygon"<<std::endl;
             break;
     }
@@ -46,4 +50,8 @@ void processMenuStatus(int status, int x, int y) {
         menuFlag = 1;
     else
         menuFlag = 0;
+}
+
+void clearMenu() {
+    rectangle = false;
 }
