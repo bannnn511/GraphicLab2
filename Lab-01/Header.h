@@ -46,8 +46,11 @@ inline std::vector<Pixel> pts;
 inline bool stopDraw;
 
 inline bool rectangle = false;
+inline bool circle = false;
+inline bool ellipse = false;
+inline bool polygon = false;
 
-static const int WIDTH = 800, HEIGHT = 500;
+static int WIDTH = 800, HEIGHT = 500;
 
 void init();
 std::vector< std::vector<int> > readFile();

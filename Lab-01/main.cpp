@@ -54,8 +54,8 @@ void init() {
 //MARK:- DISPLAY
 void display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    std::vector<std::vector<int>> data = readFile();
-    drawShape(data);
+//    std::vector<std::vector<int>> data = readFile();
+//    drawShape(data);
     
 //    if (!pts.empty() && stopDraw!=true) {
 //        glBegin(GL_LINE_STRIP);
@@ -66,12 +66,11 @@ void display(void) {
 //        glEnd();
 //    }
     Mouse *mouse = mouse->getInstance();
-    
+    double x1 = mouse->getXorigin();
+    double y1 = mouse->getYorigin();
+    double x2 = stopDraw? pts.front().x : currentPxl.x;
+    double y2 = stopDraw? pts.front().y : currentPxl.y;
     if (rectangle==true) {
-        int x1 = mouse->getXorigin();
-        int y1 = mouse->getYorigin();
-        int x2 = currentPxl.x;
-        int y2 = currentPxl.y;
         Bresenham bsh = Bresenham(x1, y1, x2, y1);
         bsh.drawLine();
         bsh = Bresenham(x2,y1,x2,y2);
@@ -80,7 +79,20 @@ void display(void) {
         bsh.drawLine();
         bsh = Bresenham(x1, y1, x1, y2);
         bsh.drawLine();
+    }
+    
+    if (circle == true){
+        double r = sqrt(pow(x2-x1, 2) + pow(y2-y1, 2));
+        MidPoint circle = MidPoint(x1, y1, r);
+        circle.drawCircle();
+    }
+    
+    if (ellipse == true) {
+        int rA = x2-x1;
+        int rB = y2-y1;
         
+        Ellipse ellipse = Ellipse(x1, y1, rA, rB);
+        ellipse.drawEllipse();
     }
 
     glutSwapBuffers();

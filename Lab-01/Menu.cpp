@@ -14,10 +14,12 @@ void processMainMenu(int option) {
     case 0:
             clearMenu();
             std::cout<<"Circle"<<std::endl;
+            circle = true;
             break;
     case 1:
             clearMenu();
             std::cout<<"Ellipse"<<std::endl;
+            ellipse = true;
             break;
     case 2:
             clearMenu();
@@ -27,6 +29,7 @@ void processMainMenu(int option) {
     case 3:
             clearMenu();
             std::cout<<"Polygon"<<std::endl;
+            polygon = true;
             break;
     }
 }
@@ -54,4 +57,7 @@ void processMenuStatus(int status, int x, int y) {
 
 void clearMenu() {
     rectangle = false;
+    circle = false;
+    ellipse = false;
+    polygon = false;
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1808BCD3245BD3380049FF91 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1808BCD2245BD3380049FF91 /* Circle.cpp */; };
 		180B9F39244F32E6008BB5EF /* Ellipse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F37244F32E6008BB5EF /* Ellipse.cpp */; };
 		180B9F3C24500072008BB5EF /* Parabola.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F3A24500072008BB5EF /* Parabola.cpp */; };
 		180B9F3F2450532B008BB5EF /* Hyperbola.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F3D2450532B008BB5EF /* Hyperbola.cpp */; };
@@ -36,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1808BCD2245BD3380049FF91 /* Circle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Circle.cpp; sourceTree = "<group>"; };
 		180B9F36244EF5DB008BB5EF /* Circle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Circle.hpp; sourceTree = "<group>"; };
 		180B9F37244F32E6008BB5EF /* Ellipse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ellipse.cpp; sourceTree = "<group>"; };
 		180B9F38244F32E6008BB5EF /* Ellipse.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Ellipse.hpp; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				18BDACE3244A938700AD5C2F /* MidPoint.hpp */,
 				180B9F3A24500072008BB5EF /* Parabola.cpp */,
 				180B9F3B24500072008BB5EF /* Parabola.hpp */,
+				1808BCD2245BD3380049FF91 /* Circle.cpp */,
 			);
 			path = Shape;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			files = (
 				180F4C6A24573361002612A2 /* Menu.cpp in Sources */,
 				18F4929A2457DD9800B18015 /* Mouse.cpp in Sources */,
+				1808BCD3245BD3380049FF91 /* Circle.cpp in Sources */,
 				180B9F3F2450532B008BB5EF /* Hyperbola.cpp in Sources */,
 				18C8C514244878CB0082F1A3 /* main.cpp in Sources */,
 				180B9F3C24500072008BB5EF /* Parabola.cpp in Sources */,

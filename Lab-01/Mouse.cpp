@@ -23,14 +23,14 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
         pts.push_back(currentPxl);
     }
     if(button == GLUT_LEFT_BUTTON && state==GLUT_UP) {
-         std::cout<<"End point:"<<x<<"- "<<y<<std::endl;
+         std::cout<<"End point: "<<x<<" - "<<y<<std::endl;
         stopDraw == true;
     }
 //    if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ) {
 //        std::cout<<"End point:"<<x<<"- "<<y<<std::endl;
 //        stopDraw = true;
 //    }
-    glutPostRedisplay();
+//    glutPostRedisplay();
 }
 
 void Mouse::mouseMove(int x, int y) {
