@@ -9,13 +9,23 @@
 #ifndef MidPoint_hpp
 #define MidPoint_hpp
 
-#include "Header.h"
+#include <vector>
+#include "../Pixel.cpp"
 
-class MidPoint: Circle {
+class MidPoint {
+private:
+    int x;
+    int y;
+    int r;
 public:
-    MidPoint(int x, int y, int r): Circle(x,y,r) {
+    MidPoint(int x, int y, int r) {
+        this->x = x;
+        this->y = y;
+        this->r = r;
     }
     std::vector<Pixel> drawCircle();
     int fCircle(int, int);
+//    Pixel centerMidpoint();
 };
+
 #endif /* MidPoint_hpp */

@@ -8,6 +8,9 @@
 
 #include <stdio.h>
 
+#ifndef pixel
+#define pixel
+
 struct Pixel {
     int x;
     int y;
@@ -17,3 +20,5 @@ struct Pixel {
         this->y = y;
     }
 };
+
+#endif

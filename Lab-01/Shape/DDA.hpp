@@ -9,7 +9,6 @@
 #ifndef DDA_hpp
 #define DDA_hpp
 
-#include <stdio.h>
 #include "Header.h"
 
 class DDA: Line {

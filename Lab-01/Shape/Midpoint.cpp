@@ -15,7 +15,12 @@ std::vector<Pixel> MidPoint::drawCircle() {
     int y0 = 0;
     int p = 1 - r;
     
-    putPixel(x0+x, y0+y);
+    RGBColor color;
+   color.r = 200;
+    color.g = 0;
+    color.b = 0;
+    
+    putPixel(x0+x, y0+y, color);
     data.push_back(Pixel(x0+x,y0+y));
     
     while (x0 >y0) {
@@ -29,23 +34,23 @@ std::vector<Pixel> MidPoint::drawCircle() {
         if (x0<y0) {
             break;
         }
-        putPixel(x0+x, y0+y);
+        putPixel(x0+x, y0+y, color);
         data.push_back(Pixel(x0+x,y0+y));
-        putPixel(-x0+x, y0+y);
+        putPixel(-x0+x, y0+y, color);
         data.push_back(Pixel(x0+x,y0+y));
-        putPixel(x0+x, -y0+y);
+        putPixel(x0+x, -y0+y, color);
         data.push_back(Pixel(x0+x,y0+y));
-        putPixel(-x0+x, -y0+y);
+        putPixel(-x0+x, -y0+y, color);
         data.push_back(Pixel(x0+x,y0+y));
         
         if(x0!=y0) {
-            putPixel(y0+x, x0+y);
+            putPixel(y0+x, x0+y, color);
             data.push_back(Pixel(x0+x,y0+y));
-            putPixel(-y0+x, x0+y);
+            putPixel(-y0+x, x0+y,color);
             data.push_back(Pixel(x0+x,y0+y));
-            putPixel(y0+x, -x0+y);
+            putPixel(y0+x, -x0+y, color);
             data.push_back(Pixel(x0+x,y0+y));
-            putPixel(-y0+x, -x0+y);
+            putPixel(-y0+x, -x0+y, color);
             data.push_back(Pixel(x0+x,y0+y));
         }
     }
@@ -56,3 +61,4 @@ std::vector<Pixel> MidPoint::drawCircle() {
 int MidPoint::fCircle(int x, int y) {
     return  x*x + y*y - r*r;
 }
+

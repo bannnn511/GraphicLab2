@@ -11,10 +11,15 @@
 void Parabola::drawParabola() {
     glColor3f(0.5, 1, 0.5);
     float d=1-2*focal,x1=0,y1=0;
+    RGBColor color;
+    color.r = 200;
+    color.g = 0;
+    color.b = 0;
+    
     while(y1<=50)
     {
-        putPixel(x1+x, y1+y);
-        putPixel(x1+x, -y1+y);
+        putPixel(x1+x, y1+y, color);
+        putPixel(x1+x, -y1+y, color);
         if(d<0){
             d+=3+2*y1;
         }
@@ -27,8 +32,8 @@ void Parabola::drawParabola() {
     }
     d=1/4-2*focal;
     while(x1<=50){
-        putPixel(x1+x, y1+y);
-        putPixel(x1+x, -y1+y);
+        putPixel(x1+x, y1+y, color);
+        putPixel(x1+x, -y1+y, color);
         if(d>0){
             d+=-4*focal;
         }

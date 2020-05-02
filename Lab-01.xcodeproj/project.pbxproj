@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1808BCD3245BD3380049FF91 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1808BCD2245BD3380049FF91 /* Circle.cpp */; };
+		1808BCD6245D11680049FF91 /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1808BCD4245D11680049FF91 /* Rectangle.cpp */; };
+		1808BCD9245D24210049FF91 /* Polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1808BCD7245D24210049FF91 /* Polygon.cpp */; };
 		180B9F39244F32E6008BB5EF /* Ellipse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F37244F32E6008BB5EF /* Ellipse.cpp */; };
 		180B9F3C24500072008BB5EF /* Parabola.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F3A24500072008BB5EF /* Parabola.cpp */; };
 		180B9F3F2450532B008BB5EF /* Hyperbola.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180B9F3D2450532B008BB5EF /* Hyperbola.cpp */; };
@@ -38,6 +40,10 @@
 
 /* Begin PBXFileReference section */
 		1808BCD2245BD3380049FF91 /* Circle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Circle.cpp; sourceTree = "<group>"; };
+		1808BCD4245D11680049FF91 /* Rectangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Rectangle.cpp; sourceTree = "<group>"; };
+		1808BCD5245D11680049FF91 /* Rectangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Rectangle.hpp; sourceTree = "<group>"; };
+		1808BCD7245D24210049FF91 /* Polygon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Polygon.cpp; sourceTree = "<group>"; };
+		1808BCD8245D24210049FF91 /* Polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Polygon.hpp; sourceTree = "<group>"; };
 		180B9F36244EF5DB008BB5EF /* Circle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Circle.hpp; sourceTree = "<group>"; };
 		180B9F37244F32E6008BB5EF /* Ellipse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ellipse.cpp; sourceTree = "<group>"; };
 		180B9F38244F32E6008BB5EF /* Ellipse.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Ellipse.hpp; sourceTree = "<group>"; };
@@ -99,6 +105,10 @@
 				180B9F3A24500072008BB5EF /* Parabola.cpp */,
 				180B9F3B24500072008BB5EF /* Parabola.hpp */,
 				1808BCD2245BD3380049FF91 /* Circle.cpp */,
+				1808BCD4245D11680049FF91 /* Rectangle.cpp */,
+				1808BCD5245D11680049FF91 /* Rectangle.hpp */,
+				1808BCD7245D24210049FF91 /* Polygon.cpp */,
+				1808BCD8245D24210049FF91 /* Polygon.hpp */,
 			);
 			path = Shape;
 			sourceTree = "<group>";
@@ -208,12 +218,14 @@
 				1808BCD3245BD3380049FF91 /* Circle.cpp in Sources */,
 				180B9F3F2450532B008BB5EF /* Hyperbola.cpp in Sources */,
 				18C8C514244878CB0082F1A3 /* main.cpp in Sources */,
+				1808BCD9245D24210049FF91 /* Polygon.cpp in Sources */,
 				180B9F3C24500072008BB5EF /* Parabola.cpp in Sources */,
 				18BDACE4244A938700AD5C2F /* Midpoint.cpp in Sources */,
 				18AF85DA245271BE00A9CEDC /* Pixel.cpp in Sources */,
 				180B9F39244F32E6008BB5EF /* Ellipse.cpp in Sources */,
 				18C8C524244896EB0082F1A3 /* DDA.cpp in Sources */,
 				185336C52449DF60004C01D9 /* Bresenham.cpp in Sources */,
+				1808BCD6245D11680049FF91 /* Rectangle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

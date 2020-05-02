@@ -13,6 +13,14 @@
 #include "glew.h"
 #include "glfw3.h"
 
+static int WIDTH = 800, HEIGHT = 500;
+
+typedef struct RGBColor {
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+} RGBColor;
+
 #include <GLUT/GLUT.h>
 #include <iostream>
 #include <fstream>
@@ -27,13 +35,15 @@
 
 #include "Pixel.cpp"
 #include "Line.hpp"
-#include "Circle.hpp"
 #include "DDA.hpp"
+#include "Rectangle.hpp"
 #include "Bresenham.hpp"
 #include "MidPoint.hpp"
 #include "Ellipse.hpp"
 #include "Parabola.hpp"
 #include "Hyperbola.hpp"
+#include "Polygon.hpp"
+
 #include "Menu.hpp"
 #include "Mouse.hpp"
 
@@ -50,7 +60,14 @@ inline bool circle = false;
 inline bool ellipse = false;
 inline bool polygon = false;
 
-static int WIDTH = 800, HEIGHT = 500;
+inline std::vector<Ellipse> ellipseCollector;
+inline std::vector<MidPoint> circleCollector;
+inline std::vector<Rectangle> rectangleCollector;
+inline std::vector<Polygon> polygonCollector;
+
+inline Polygon poly;
+
+
 
 void init();
 std::vector< std::vector<int> > readFile();
@@ -60,7 +77,7 @@ void capture(GLFWwindow* window);
 void calculateMSE(std::vector<Pixel>, std::vector<Pixel>);
 
 //MARK:- Draw
-void putPixel(int, int);
+void putPixel(int, int, RGBColor);
 void display(void);
 void drawShape(std::vector<std::vector<int>> data);
 void reshape(GLsizei width, GLsizei height);
@@ -72,5 +89,8 @@ void parabolaTruth();
 
 void createMenu();
 
+bool isTheSameColor(RGBColor, RGBColor);
+RGBColor getPixel(int x, int y);
+void BoundaryFill(int x, int y, RGBColor fColor, RGBColor bColor);
 #endif /* Header_h */
 

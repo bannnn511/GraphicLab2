@@ -57,44 +57,76 @@ void display(void) {
 //    std::vector<std::vector<int>> data = readFile();
 //    drawShape(data);
     
-//    if (!pts.empty() && stopDraw!=true) {
-//        glBegin(GL_LINE_STRIP);
-//        for (auto pt: pts)
-//            glVertex2i(pt.x, pt.y);
-//        auto endPt = stopDraw? pts.front() : currentPxl;
-//        glVertex2f(endPt.x, endPt.y);
-//        glEnd();
-//    }
+
     Mouse *mouse = mouse->getInstance();
     double x1 = mouse->getXorigin();
     double y1 = mouse->getYorigin();
     double x2 = stopDraw? pts.front().x : currentPxl.x;
     double y2 = stopDraw? pts.front().y : currentPxl.y;
-    if (rectangle==true) {
-        Bresenham bsh = Bresenham(x1, y1, x2, y1);
-        bsh.drawLine();
-        bsh = Bresenham(x2,y1,x2,y2);
-        bsh.drawLine();
-        bsh = Bresenham(x1, y2, x2, y2);
-        bsh.drawLine();
-        bsh = Bresenham(x1, y1, x1, y2);
-        bsh.drawLine();
+    
+    if (rectangle == true) {
+        Rectangle rect = Rectangle(x1, y1, x2, y2);
+        rect.drawRectangle();
+        
+        if(stopDraw == true) {
+            rectangleCollector.push_back(rect);
+        }
     }
     
-    if (circle == true){
+    if (circle == true) {
         double r = sqrt(pow(x2-x1, 2) + pow(y2-y1, 2));
         MidPoint circle = MidPoint(x1, y1, r);
         circle.drawCircle();
+        
+        if (stopDraw == true) {
+            circleCollector.push_back(circle);
+        }
     }
     
     if (ellipse == true) {
-        int rA = x2-x1;
-        int rB = y2-y1;
+        int rA = abs(x2-x1);
+        int rB = abs(y2-y1);
         
         Ellipse ellipse = Ellipse(x1, y1, rA, rB);
         ellipse.drawEllipse();
+        
+        if(stopDraw == true) {
+            ellipseCollector.push_back(ellipse);
+        }
     }
-
+    
+    if (polygon == true) {
+        Pixel pxl = Pixel(-1,-1);
+        for (auto pt: pts)
+            pxl = Pixel(pt.x, pt.y);
+        auto &endPt = stopDraw? pts.front() : currentPxl;
+        Bresenham bsh(pxl.x, pxl.y, endPt.x, endPt.y);
+        bsh.drawLine();
+        if (stopDraw == true) {
+            poly.addPoint(endPt);
+            poly.drawPolygon();
+        }
+    }
+    
+    if (!rectangleCollector.empty()) {
+        for(auto pt: rectangleCollector)
+            pt.drawRectangle();
+    }
+    if (!ellipseCollector.empty() ) {
+        for (auto pt: ellipseCollector)
+            pt.drawEllipse();
+    }
+    
+    if (!circleCollector.empty()) {
+        for ( auto pt:circleCollector)
+            pt.drawCircle();
+    }
+    
+    if(!polygonCollector.empty()) {
+        for (auto pt:polygonCollector)
+            pt.drawPolygon();
+    }
+    
     glutSwapBuffers();
 }
 
@@ -145,10 +177,19 @@ void parabolaTruth() {
     }
 }
 
-void putPixel(int x, int y) {
-    glBegin(GL_POINTS);
-    glVertex2f(x, y);
-    glEnd();
+void putPixel(int x, int y, RGBColor color) {
+    unsigned char *ptr = new unsigned char [3];
+    ptr[0] = color.r;
+    ptr[1] = color.g;
+    ptr[2] = color.b;
+    
+    glRasterPos2f(x, y);
+    glDrawPixels(1, 1, GL_RGB, GL_UNSIGNED_BYTE, ptr);
+    glFlush();
+    
+//    glBegin(GL_POINTS);
+//    glVertex2f(x, y);
+//    glEnd();
 }
 
 std::vector<std::vector<int>> readFile() {
@@ -301,4 +342,32 @@ void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integ
       // aspect < 1, set the width to -1 to 1, with larger height
      gluOrtho2D(-1.0, 1.0, -1.0 / aspect, 1.0 / aspect);
    }
+}
+
+
+bool isTheSameColor(RGBColor current, RGBColor now) {
+    if (current.b == now.b || current.g == now.g || current.r == now.r) {
+        return true;
+    }
+    return false;
+}
+
+RGBColor getPixel(int x, int y) {
+    unsigned char * ptr = new unsigned char [3];
+    glReadPixels(x, 800-y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, ptr);
+    RGBColor color;
+    color.r = ptr[0];
+    color.g = ptr[1];
+    color.b = ptr[2];
+    return color;
+}
+
+void BoundaryFill(int x, int y, RGBColor fColor, RGBColor bColor) {
+    RGBColor currentColor;
+    
+    currentColor = getPixel(x, y);
+    
+    if(!isTheSameColor(currentColor, bColor) && !isTheSameColor(currentColor, fColor)) {
+        
+    }
 }

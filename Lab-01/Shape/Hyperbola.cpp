@@ -21,12 +21,16 @@ void Hyperbola::drawHyperbola() {
     
     dx = 2*rB*rB*x1;
     dy = 2*rA*rA*y1;
+    RGBColor color;
+    color.r = 200;
+    color.g = 0;
+    color.b = 0;
     
     while (dx < dy) {
-        putPixel(x1+x, y1+y);
-        putPixel(-x1+x, y1+y);
-        putPixel(x1+x, -y1+y);
-        putPixel(-x1+x, -y1+y);
+        putPixel(x1+x, y1+y, color);
+        putPixel(-x1+x, y1+y, color);
+        putPixel(x1+x, -y1+y, color);
+        putPixel(-x1+x, -y1+y, color);
         
         if(d1<0) {
             x1++;
@@ -42,10 +46,10 @@ void Hyperbola::drawHyperbola() {
     }
     
     while (y1 <=100) {
-        putPixel(x1+x, y1+y);
-        putPixel(-x1+x, y1+y);
-        putPixel(x1+x, -y1+y);
-        putPixel(-x1+x, -y1+y);
+        putPixel(x1+x, y1+y, color);
+        putPixel(-x1+x, y1+y, color);
+        putPixel(x1+x, -y1+y, color);
+        putPixel(-x1+x, -y1+y, color);
         
         if (d2>0) {
             y1++;

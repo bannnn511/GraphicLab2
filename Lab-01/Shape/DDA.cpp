@@ -20,12 +20,17 @@ std::vector<Pixel> DDA::drawLine() {
     float y=y1;
     float xInc = dX/steps;
     float yInc = dY/steps;
+    
+    RGBColor color;
+    color.r = 200;
+    color.g = 0;
+    color.b = 0;
 
     for ( int i = 0; i <= steps; i++) {
         glColor3f(1.0,0,0.0);
         x = x + xInc;
         y = y+ yInc;
-        putPixel(x, y);
+        putPixel(x, y,color);
         data.push_back(Pixel(x, y));
         glEnd();
     }

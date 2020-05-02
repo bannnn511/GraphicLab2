@@ -31,6 +31,16 @@ void processMainMenu(int option) {
             std::cout<<"Polygon"<<std::endl;
             polygon = true;
             break;
+        case 4:
+            clearMenu();
+            std::cout<<"Clear"<<std::endl;
+            pts.clear();
+            rectangleCollector.clear();
+            circleCollector.clear();
+            ellipseCollector.clear();
+            polygonCollector.clear();
+            glutPostRedisplay();
+            break;
     }
 }
 
@@ -41,6 +51,7 @@ void createPopupMenu() {
     glutAddMenuEntry("Ellipse",1);
     glutAddMenuEntry("Rectangle",2);
     glutAddMenuEntry("Polygon",3);
+    glutAddMenuEntry("Clear", 4);
     
     glutAttachMenu(GLUT_RIGHT_BUTTON);
     
