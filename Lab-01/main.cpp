@@ -7,7 +7,7 @@
 //
 
 
-#define GLEW_STATIC
+//#define GLEW_STATIC
 
 #include "Header.h"
 
@@ -15,8 +15,8 @@
 int main(int argc, char * argv[]) {
     
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowPosition(100,100);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+//    glutInitWindowPosition(100,100);
     glutInitWindowSize(WIDTH, HEIGHT);
     glutCreateWindow("Lab2");
     
@@ -29,6 +29,7 @@ int main(int argc, char * argv[]) {
     createPopupMenu();
     
     glutDisplayFunc(display);
+    glutReshapeFunc(changeSize);
     
     glutMainLoop();
     
@@ -73,6 +74,7 @@ void display(void) {
         if(stopDraw == true) {
             rectangleCollector.push_back(rect);
             std::cout<<"x1 "<<x1<<" y1 "<<y1<<" x2 "<<x2<<" y2 "<<y2<<std::endl;
+            stopDraw = false;
         }
     }
     
@@ -334,24 +336,15 @@ void calculateMSE(std::vector<Pixel> data, std::vector<Pixel> standard) {
     std::cout<<"Mean square err: "<<mse<<std::endl;
 }
 
-void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integer
-    // Compute aspect ratio of the new window
-    if (height == 0) height = 1;                // To prevent divide by 0
-    GLfloat aspect = (GLfloat)width / (GLfloat)height;
-    
-    // Set the viewport to cover the new window
-    glViewport(0, 0, width, height);
-    
-    // Set the aspect ratio of the clipping area to match the viewport
-    glMatrixMode(GL_PROJECTION);  // To operate on the Projection matrix
-    glLoadIdentity();             // Reset the projection matrix
-    if (width >= height) {
-        // aspect >= 1, set the height from -1 to 1, with larger width
-        gluOrtho2D(-1.0 * aspect, 1.0 * aspect, -1.0, 1.0);
-    } else {
-        // aspect < 1, set the width to -1 to 1, with larger height
-        gluOrtho2D(-1.0, 1.0, -1.0 / aspect, 1.0 / aspect);
-    }
+void changeSize(int w, int h) {
+
+    glViewport(0, 0, w, h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0, WIDTH, 0, HEIGHT, -1, 1);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    display();
 }
 
 

@@ -84,7 +84,7 @@ void calculateMSE(std::vector<Pixel>, std::vector<Pixel>);
 void putPixel(int, int, RGBColor);
 void display(void);
 void drawShape(std::vector<std::vector<int>> data);
-void reshape(GLsizei width, GLsizei height);
+void changeSize(int w, int h);
 
 void groundTruth(int, int, int, int);
 void circleTruth(int, int ,int);
