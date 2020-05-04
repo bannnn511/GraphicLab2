@@ -11,22 +11,22 @@
 
 void processMainMenu(int option) {
     switch (option) {
-    case 0:
+        case 0:
             clearMenu();
             std::cout<<"Circle"<<std::endl;
             circle = true;
             break;
-    case 1:
+        case 1:
             clearMenu();
             std::cout<<"Ellipse"<<std::endl;
             ellipse = true;
             break;
-    case 2:
+        case 2:
             clearMenu();
             std::cout<<"Rectangle"<<std::endl;
             rectangle= true;
             break;
-    case 3:
+        case 3:
             clearMenu();
             std::cout<<"Polygon"<<std::endl;
             polygon = true;

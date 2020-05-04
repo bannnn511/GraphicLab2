@@ -19,7 +19,7 @@ int main(int argc, char * argv[]) {
     glutInitWindowPosition(100,100);
     glutInitWindowSize(WIDTH, HEIGHT);
     glutCreateWindow("Lab2");
-      
+    
     init();
     
     Mouse *mouse = mouse->getInstance();
@@ -29,8 +29,9 @@ int main(int argc, char * argv[]) {
     createPopupMenu();
     
     glutDisplayFunc(display);
-
+    
     glutMainLoop();
+    
     return 0;
 }
 
@@ -38,33 +39,34 @@ int main(int argc, char * argv[]) {
 void init() {
     
     glClearColor(0, 0, 0, 0);
-
+    
     glViewport(0, 0, WIDTH, HEIGHT);
-
+    
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-
+    
     glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
-
+    
     glMatrixMode(GL_MODELVIEW);
-
+    
     glPointSize(5);
 }
 
 //MARK:- DISPLAY
 void display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    std::vector<std::vector<int>> data = readFile();
-//    drawShape(data);
+    //    std::vector<std::vector<int>> data = readFile();
+    //    drawShape(data);
     
-
+    
     Mouse *mouse = mouse->getInstance();
     double x1 = mouse->getXorigin();
     double y1 = mouse->getYorigin();
-    double x2 = stopDraw? pts.front().x : currentPxl.x;
-    double y2 = stopDraw? pts.front().y : currentPxl.y;
+    double x2 = stopDraw? pts.back().x : currentPxl.x;
+    double y2 = stopDraw? pts.back().y : currentPxl.y;
     
     if (rectangle == true) {
+//        std::cout<<"Currently drawing rectangle"<<std::endl;
         Rectangle rect = Rectangle(x1, y1, x2, y2);
         rect.drawRectangle();
         
@@ -74,6 +76,7 @@ void display(void) {
     }
     
     if (circle == true) {
+//        std::cout<<"Currently drawing circle"<<std::endl;
         double r = sqrt(pow(x2-x1, 2) + pow(y2-y1, 2));
         MidPoint circle = MidPoint(x1, y1, r);
         circle.drawCircle();
@@ -84,6 +87,7 @@ void display(void) {
     }
     
     if (ellipse == true) {
+//        std::cout<<"Currently drawing ellipse"<<std::endl;
         int rA = abs(x2-x1);
         int rB = abs(y2-y1);
         
@@ -96,6 +100,7 @@ void display(void) {
     }
     
     if (polygon == true) {
+//        std::cout<<"Currently drawing polygon"<<std::endl;
         Pixel pxl = Pixel(-1,-1);
         for (auto pt: pts)
             pxl = Pixel(pt.x, pt.y);
@@ -109,22 +114,30 @@ void display(void) {
     }
     
     if (!rectangleCollector.empty()) {
-        for(auto pt: rectangleCollector)
+        for(auto pt: rectangleCollector){
+//            std::cout<<"Drawing rectangle"<<std::endl;
             pt.drawRectangle();
+        }
     }
     if (!ellipseCollector.empty() ) {
-        for (auto pt: ellipseCollector)
+        for (auto pt: ellipseCollector) {
+//            std::cout<<"Drawing ellipse"<<std::endl;
             pt.drawEllipse();
+        }
     }
     
     if (!circleCollector.empty()) {
-        for ( auto pt:circleCollector)
+        for ( auto pt:circleCollector) {
+//            std::cout<<"Drawing circle"<<std::endl;
             pt.drawCircle();
+        }
     }
     
     if(!polygonCollector.empty()) {
-        for (auto pt:polygonCollector)
+        for (auto pt:polygonCollector) {
+            std::cout<<"Drawing polygon"<<std::endl;
             pt.drawPolygon();
+        }
     }
     
     glutSwapBuffers();
@@ -187,9 +200,9 @@ void putPixel(int x, int y, RGBColor color) {
     glDrawPixels(1, 1, GL_RGB, GL_UNSIGNED_BYTE, ptr);
     glFlush();
     
-//    glBegin(GL_POINTS);
-//    glVertex2f(x, y);
-//    glEnd();
+    //    glBegin(GL_POINTS);
+    //    glVertex2f(x, y);
+    //    glEnd();
 }
 
 std::vector<std::vector<int>> readFile() {
@@ -215,7 +228,7 @@ std::vector<std::vector<int>> readFile() {
 
 void capture(GLFWwindow* window){
     int screenWidth, screenHeight;
-
+    
     glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
     GLfloat *p;
     p = new GLfloat[3*WIDTH * HEIGHT];
@@ -256,7 +269,7 @@ void drawShape(std::vector<std::vector<int>> data) {
                 std::cout << "OpenGL line draw time: " << time <<std::endl;
                 
                 break;
-             }
+            }
             case 1: {
                 Bresenham bsh = Bresenham(data[i][1], data[i][2], data[i][3], data[i][4]);
                 auto start = std::chrono::high_resolution_clock::now();
@@ -265,7 +278,7 @@ void drawShape(std::vector<std::vector<int>> data) {
                 std::chrono::duration<float> elapsed = finish - start;
                 double time =elapsed.count()*pow(10,3);
                 std::cout<<"Bresenham line draw time: "<<time <<std::endl;
-     
+                
                 start = std::chrono::high_resolution_clock::now();
                 groundTruth(data[i][1], data[i][2], data[i][3], data[i][4]);
                 finish = std::chrono::high_resolution_clock::now();
@@ -325,23 +338,23 @@ void calculateMSE(std::vector<Pixel> data, std::vector<Pixel> standard) {
 }
 
 void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integer
-   // Compute aspect ratio of the new window
-   if (height == 0) height = 1;                // To prevent divide by 0
-   GLfloat aspect = (GLfloat)width / (GLfloat)height;
- 
-   // Set the viewport to cover the new window
-   glViewport(0, 0, width, height);
- 
-   // Set the aspect ratio of the clipping area to match the viewport
-   glMatrixMode(GL_PROJECTION);  // To operate on the Projection matrix
-   glLoadIdentity();             // Reset the projection matrix
-   if (width >= height) {
-     // aspect >= 1, set the height from -1 to 1, with larger width
-      gluOrtho2D(-1.0 * aspect, 1.0 * aspect, -1.0, 1.0);
-   } else {
-      // aspect < 1, set the width to -1 to 1, with larger height
-     gluOrtho2D(-1.0, 1.0, -1.0 / aspect, 1.0 / aspect);
-   }
+    // Compute aspect ratio of the new window
+    if (height == 0) height = 1;                // To prevent divide by 0
+    GLfloat aspect = (GLfloat)width / (GLfloat)height;
+    
+    // Set the viewport to cover the new window
+    glViewport(0, 0, width, height);
+    
+    // Set the aspect ratio of the clipping area to match the viewport
+    glMatrixMode(GL_PROJECTION);  // To operate on the Projection matrix
+    glLoadIdentity();             // Reset the projection matrix
+    if (width >= height) {
+        // aspect >= 1, set the height from -1 to 1, with larger width
+        gluOrtho2D(-1.0 * aspect, 1.0 * aspect, -1.0, 1.0);
+    } else {
+        // aspect < 1, set the width to -1 to 1, with larger height
+        gluOrtho2D(-1.0, 1.0, -1.0 / aspect, 1.0 / aspect);
+    }
 }
 
 
@@ -368,6 +381,10 @@ void BoundaryFill(int x, int y, RGBColor fColor, RGBColor bColor) {
     currentColor = getPixel(x, y);
     
     if(!isTheSameColor(currentColor, bColor) && !isTheSameColor(currentColor, fColor)) {
-        
+        putPixel(x, y, fColor);
+        BoundaryFill(x-1, y, fColor, bColor);
+        BoundaryFill(x, y+1, fColor, bColor);
+        BoundaryFill(x+1, y, fColor, bColor);
+        BoundaryFill(x, y-1, fColor, bColor);
     }
 }

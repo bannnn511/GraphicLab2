@@ -11,10 +11,11 @@
 Mouse *Mouse::mouse = 0;
 
 void Mouse::mouseButton(int button, int state, int x, int y) {
-    currentPxl = Pixel(x,HEIGHT-y);
-    mouse->setXorigin(x);
-    mouse->setYorigin(HEIGHT-y);
+
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+        currentPxl = Pixel(x,HEIGHT-y);
+        mouse->setXorigin(x);
+        mouse->setYorigin(HEIGHT-y);
         if (stopDraw) {
             pts.clear();
         }
@@ -27,6 +28,8 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
         if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
             std::cout<<"End point: "<<x<<" - "<<y<<std::endl;
             stopDraw = true;
+            currentPxl = Pixel(x,HEIGHT-y);
+            pts.push_back(currentPxl);
             glutPostRedisplay();
         }
     } else if (polygon == true) {
