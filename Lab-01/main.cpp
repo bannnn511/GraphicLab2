@@ -62,8 +62,8 @@ void display(void) {
     Mouse *mouse = mouse->getInstance();
     double x1 = mouse->getXorigin();
     double y1 = mouse->getYorigin();
-    double x2 = stopDraw? pts.front().x : currentPxl.x;
-    double y2 = stopDraw? pts.front().y : currentPxl.y;
+    double x2 = currentPxl.x;
+    double y2 = currentPxl.y;
     
     if (rectangle == true) {
 //        std::cout<<"Currently drawing rectangle"<<std::endl;
@@ -194,7 +194,7 @@ void putPixel(int x, int y, RGBColor color) {
     
     glRasterPos2f(x, y);
     glDrawPixels(1, 1, GL_RGB, GL_UNSIGNED_BYTE, ptr);
-    glFlush();
+    delete ptr;
     
     //    glBegin(GL_POINTS);
     //    glVertex2f(x, y);
@@ -241,6 +241,7 @@ void capture(GLFWwindow* window){
             glEnd();
         }
     }
+    delete p;
 }
 
 //MARK:- Draw shape

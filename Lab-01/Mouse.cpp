@@ -13,9 +13,7 @@ Mouse *Mouse::mouse = 0;
 void Mouse::mouseButton(int button, int state, int x, int y) {
 
     currentPxl = Pixel(x,HEIGHT-y);
-    mouse->setXorigin(x);
-    mouse->setYorigin(HEIGHT-y);
-    
+   
     if (red || green || blue) {
         mouse->fillColor(x, y);
     }
@@ -25,6 +23,10 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
             if (stopDraw) {
                 pts.clear();
             }
+            
+            mouse->setXorigin(x);
+            mouse->setYorigin(HEIGHT-y);
+            
             stopDraw = false;
             std::cout<<"Push cooor: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
             pts.push_back(currentPxl);
