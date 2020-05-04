@@ -12,39 +12,32 @@ Mouse *Mouse::mouse = 0;
 
 void Mouse::mouseButton(int button, int state, int x, int y) {
 
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        currentPxl = Pixel(x,HEIGHT-y);
-        mouse->setXorigin(x);
-        mouse->setYorigin(HEIGHT-y);
-        if (stopDraw) {
-            pts.clear();
-        }
-        stopDraw = false;
-        std::cout<<"Push cooor: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
-        pts.push_back(currentPxl);
+    currentPxl = Pixel(x,HEIGHT-y);
+    mouse->setXorigin(x);
+    mouse->setYorigin(HEIGHT-y);
+    
+    if (red || green || blue) {
+        mouse->fillColor(x, y);
     }
     
-    if (polygon == false) {
-        if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
+    if (button == GLUT_LEFT_BUTTON) {
+        if (state == GLUT_DOWN) {
+            if (stopDraw) {
+                pts.clear();
+            }
+            stopDraw = false;
+            std::cout<<"Push cooor: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
+            pts.push_back(currentPxl);
+        } else {
             std::cout<<"End point: "<<x<<" - "<<y<<std::endl;
             stopDraw = true;
-            currentPxl = Pixel(x,HEIGHT-y);
-            pts.push_back(currentPxl);
-            glutPostRedisplay();
         }
-    } else if (polygon == true) {
-        if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-            stopDraw = true;
     }
-//    if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ) {
-//        std::cout<<"End point:"<<x<<"- "<<y<<std::endl;
-//        stopDraw = true;
-//    }
-//    glutPostRedisplay();
+    glutPostRedisplay();
 }
 
 void Mouse::mouseMove(int x, int y) {
-    std::cout<<"x: "<<x<<" y: "<<y<<std::endl;
+//    std::cout<<"x: "<<x<<" y: "<<y<<std::endl;
     currentPxl = Pixel(x,HEIGHT-y);
     glutPostRedisplay();
 }
@@ -63,4 +56,19 @@ void Mouse::setXorigin(int x) {
 
 void Mouse::setYorigin(int y) {
     this->yOrigin = y;
+}
+
+void Mouse::fillColor(int x, int y) {
+    RGBColor color;
+    color.r = 200;
+    color.g = 0;
+    color.b = 0;
+    
+    for(auto pt: rectangleCollector) {
+        if (pt.checkInside(x, HEIGHT-y)) {
+            BoundaryFill(x, HEIGHT-y, color, color);
+//            usleep(100);
+            clearColorMenu();
+        }
+    }
 }

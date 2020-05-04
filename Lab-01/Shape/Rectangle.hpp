@@ -9,6 +9,7 @@
 #ifndef Rectangle_hpp
 #define Rectangle_hpp
 
+#include "../Pixel.cpp"
 
 class Rectangle {
 private:
@@ -25,6 +26,8 @@ public:
     }
     
     void drawRectangle();
+    Pixel getCenterPoint();
+    bool checkInside(int, int);
 };
 
 #endif /* Rectangle_hpp */

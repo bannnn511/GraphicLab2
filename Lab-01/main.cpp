@@ -45,7 +45,7 @@ void init() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     
-    glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
+    glOrtho(0, WIDTH, 0, HEIGHT, -1, 1);
     
     glMatrixMode(GL_MODELVIEW);
     
@@ -62,8 +62,8 @@ void display(void) {
     Mouse *mouse = mouse->getInstance();
     double x1 = mouse->getXorigin();
     double y1 = mouse->getYorigin();
-    double x2 = stopDraw? pts.back().x : currentPxl.x;
-    double y2 = stopDraw? pts.back().y : currentPxl.y;
+    double x2 = stopDraw? pts.front().x : currentPxl.x;
+    double y2 = stopDraw? pts.front().y : currentPxl.y;
     
     if (rectangle == true) {
 //        std::cout<<"Currently drawing rectangle"<<std::endl;
@@ -72,6 +72,7 @@ void display(void) {
         
         if(stopDraw == true) {
             rectangleCollector.push_back(rect);
+            std::cout<<"x1 "<<x1<<" y1 "<<y1<<" x2 "<<x2<<" y2 "<<y2<<std::endl;
         }
     }
     
@@ -87,7 +88,6 @@ void display(void) {
     }
     
     if (ellipse == true) {
-//        std::cout<<"Currently drawing ellipse"<<std::endl;
         int rA = abs(x2-x1);
         int rB = abs(y2-y1);
         
@@ -100,7 +100,6 @@ void display(void) {
     }
     
     if (polygon == true) {
-//        std::cout<<"Currently drawing polygon"<<std::endl;
         Pixel pxl = Pixel(-1,-1);
         for (auto pt: pts)
             pxl = Pixel(pt.x, pt.y);
@@ -115,20 +114,17 @@ void display(void) {
     
     if (!rectangleCollector.empty()) {
         for(auto pt: rectangleCollector){
-//            std::cout<<"Drawing rectangle"<<std::endl;
             pt.drawRectangle();
         }
     }
     if (!ellipseCollector.empty() ) {
         for (auto pt: ellipseCollector) {
-//            std::cout<<"Drawing ellipse"<<std::endl;
             pt.drawEllipse();
         }
     }
     
     if (!circleCollector.empty()) {
         for ( auto pt:circleCollector) {
-//            std::cout<<"Drawing circle"<<std::endl;
             pt.drawCircle();
         }
     }
@@ -359,7 +355,7 @@ void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integ
 
 
 bool isTheSameColor(RGBColor current, RGBColor now) {
-    if (current.b == now.b || current.g == now.g || current.r == now.r) {
+    if (current.b == now.b && current.g == now.g && current.r == now.r) {
         return true;
     }
     return false;
@@ -372,6 +368,7 @@ RGBColor getPixel(int x, int y) {
     color.r = ptr[0];
     color.g = ptr[1];
     color.b = ptr[2];
+    delete ptr;
     return color;
 }
 
@@ -382,6 +379,7 @@ void BoundaryFill(int x, int y, RGBColor fColor, RGBColor bColor) {
     
     if(!isTheSameColor(currentColor, bColor) && !isTheSameColor(currentColor, fColor)) {
         putPixel(x, y, fColor);
+        std::cout<<"Coloring..."<<std::endl;
         BoundaryFill(x-1, y, fColor, bColor);
         BoundaryFill(x, y+1, fColor, bColor);
         BoundaryFill(x+1, y, fColor, bColor);

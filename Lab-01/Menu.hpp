@@ -14,8 +14,10 @@
 
 
 void processMainMenu(int option);
+void processColorMenu(int);
 void createPopupMenu();
 void processMenuStatus(int status, int x, int y);
 void clearMenu();
+void clearColorMenu();
 
 #endif /* Menu_hpp */

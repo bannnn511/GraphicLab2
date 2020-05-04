@@ -92,7 +92,7 @@ std::vector<Pixel> Bresenham::drawLineHigh(int x1, int y1, int x2,int y2) {
     int x = x1;
     
     RGBColor color;
-     color.r = 200;
+    color.r = 200;
     color.g = 0;
     color.b = 0;
     

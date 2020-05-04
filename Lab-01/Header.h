@@ -32,6 +32,7 @@ typedef struct RGBColor {
 #include <thread>
 #include <algorithm>
 #include <array>
+#include <unistd.h>
 
 #include "Pixel.cpp"
 #include "Line.hpp"
@@ -67,7 +68,10 @@ inline std::vector<Polygon> polygonCollector;
 
 inline Polygon poly;
 
-
+inline bool red = false;
+inline bool green = false;
+inline bool blue = false;
+inline bool coloring = false;
 
 void init();
 std::vector< std::vector<int> > readFile();

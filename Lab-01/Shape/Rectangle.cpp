@@ -19,3 +19,23 @@ void Rectangle::drawRectangle() {
     bsh = Bresenham(x1, y1, x1, y2);
     bsh.drawLine();
 }
+
+Pixel Rectangle::getCenterPoint() {
+    int x = (x1+x2)/2;
+    int y = (y1+y2)/2;
+    return Pixel(x,y);
+}
+
+bool Rectangle::checkInside(int x, int y) {
+    int xMin = x1 > x2 ? x2 : x1;
+    int xMax = x1 > x2 ? x1 : x2;
+    int yMin = y1 > y2 ? y2 : y1;
+    int yMax = y1 > y2 ? y1 : y2;
+    
+    if ((x>xMin) && (x<xMax) && (y<yMax) && (y>yMin)) {
+        std::cout<<"Rectangle inside"<<std::endl;
+        return true;
+    }
+    std::cout<<"Rectangle outside"<<std::endl;
+    return false;
+}

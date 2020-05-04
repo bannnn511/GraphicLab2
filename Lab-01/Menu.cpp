@@ -10,29 +10,26 @@
 
 
 void processMainMenu(int option) {
+    clearMenu();
+    clearColorMenu();
     switch (option) {
         case 0:
-            clearMenu();
             std::cout<<"Circle"<<std::endl;
             circle = true;
             break;
         case 1:
-            clearMenu();
             std::cout<<"Ellipse"<<std::endl;
             ellipse = true;
             break;
         case 2:
-            clearMenu();
             std::cout<<"Rectangle"<<std::endl;
             rectangle= true;
             break;
         case 3:
-            clearMenu();
             std::cout<<"Polygon"<<std::endl;
             polygon = true;
             break;
         case 4:
-            clearMenu();
             std::cout<<"Clear"<<std::endl;
             pts.clear();
             rectangleCollector.clear();
@@ -44,7 +41,33 @@ void processMainMenu(int option) {
     }
 }
 
+void processColorMenu(int option) {
+    clearColorMenu();
+    clearMenu();
+    switch (option) {
+        case 0:
+            red = true;
+            std::cout<<"Red"<<std::endl;
+            break;
+        case 1:
+            green = true;
+            std::cout<<"Green"<<std::endl;
+            break;
+        case 2:
+            blue = true;
+            std::cout<<"Blue"<<std::endl;
+            break;
+    }
+}
+
 void createPopupMenu() {
+    
+    int  color;
+    color = glutCreateMenu(processColorMenu);
+    glutAddMenuEntry("Red",0);
+    glutAddMenuEntry("Green",1);
+    glutAddMenuEntry("Blue",2);
+    
     int menu;
     menu = glutCreateMenu(processMainMenu);
     glutAddMenuEntry("Circle",0);
@@ -52,6 +75,8 @@ void createPopupMenu() {
     glutAddMenuEntry("Rectangle",2);
     glutAddMenuEntry("Polygon",3);
     glutAddMenuEntry("Clear", 4);
+    
+    glutAddSubMenu("Color", color);
     
     glutAttachMenu(GLUT_RIGHT_BUTTON);
     
@@ -71,4 +96,10 @@ void clearMenu() {
     circle = false;
     ellipse = false;
     polygon = false;
+}
+
+void clearColorMenu() {
+    red = false;
+    green = false;
+    blue = false;
 }
