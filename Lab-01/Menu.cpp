@@ -16,18 +16,22 @@ void processMainMenu(int option) {
         case 0:
             std::cout<<"Circle"<<std::endl;
             circle = true;
+            isDrawing = true;
             break;
         case 1:
             std::cout<<"Ellipse"<<std::endl;
             ellipse = true;
+            isDrawing = true;
             break;
         case 2:
             std::cout<<"Rectangle"<<std::endl;
             rectangle= true;
+            isDrawing = true;
             break;
         case 3:
             std::cout<<"Polygon"<<std::endl;
             polygon = true;
+            isDrawing = true;
             break;
         case 4:
             std::cout<<"Clear"<<std::endl;
@@ -37,6 +41,8 @@ void processMainMenu(int option) {
             ellipseCollector.clear();
             polygonCollector.clear();
             glutPostRedisplay();
+            break;
+        default:
             break;
     }
 }
@@ -74,6 +80,7 @@ void createPopupMenu() {
     glutAddMenuEntry("Ellipse",1);
     glutAddMenuEntry("Rectangle",2);
     glutAddMenuEntry("Polygon",3);
+    glutAddMenuEntry("Done",5);
     glutAddMenuEntry("Clear", 4);
     
     glutAddSubMenu("Color", color);
@@ -96,6 +103,7 @@ void clearMenu() {
     circle = false;
     ellipse = false;
     polygon = false;
+    isDrawing = false;
 }
 
 void clearColorMenu() {

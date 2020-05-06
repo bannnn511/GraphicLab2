@@ -13,7 +13,7 @@ Mouse *Mouse::mouse = 0;
 void Mouse::mouseButton(int button, int state, int x, int y) {
 
     currentPxl = Pixel(x,HEIGHT-y);
-   
+    std::cout<<"Mouse click x:"<<x<<" y: "<<HEIGHT - y<<std::endl;
 //    if (red || green || blue) {
 //        glutPostRedisplay();
 //        mouse->fillColor(x, HEIGHT-y);
@@ -29,10 +29,12 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
             mouse->setYorigin(HEIGHT-y);
             
             stopDraw = false;
-            std::cout<<"Push cooor: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
-            pts.push_back(currentPxl);
+            if (isDrawing) {
+                std::cout<<"Push cooor: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
+                pts.push_back(currentPxl);
+            }
         } else {
-            std::cout<<"End point: "<<x<<" "<<y<<std::endl;
+            std::cout<<"End point: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
             stopDraw = true;
         }
     }

@@ -205,7 +205,7 @@ void putPixel(int x, int y, RGBColor color) {
     glColor3f(color.r, color.g, color.b);
     glBegin(GL_POINTS);
     glVertex2f(x, y);
-    std::cout<<"Put pixel at x: "<<x<<" y: "<<y<<std::endl;
+//    std::cout<<"Put pixel at x: "<<x<<" y: "<<y<<std::endl;
     glEnd();
 //    RGBColor currentColor = getPixel(x, y);
 //

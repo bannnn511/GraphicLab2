@@ -55,6 +55,7 @@ static int menuFlag = 0;
 inline Pixel currentPxl = Pixel(-1,-1);
 inline std::vector<Pixel> pts;
 inline bool stopDraw;
+inline bool isDrawing = false;
 
 inline bool rectangle = false;
 inline bool circle = false;
