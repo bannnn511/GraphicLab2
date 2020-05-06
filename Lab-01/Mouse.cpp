@@ -14,9 +14,10 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
 
     currentPxl = Pixel(x,HEIGHT-y);
    
-    if (red || green || blue) {
-        mouse->fillColor(x, y);
-    }
+//    if (red || green || blue) {
+//        glutPostRedisplay();
+//        mouse->fillColor(x, HEIGHT-y);
+//    }
     
     if (button == GLUT_LEFT_BUTTON) {
         if (state == GLUT_DOWN) {
@@ -31,7 +32,7 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
             std::cout<<"Push cooor: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
             pts.push_back(currentPxl);
         } else {
-            std::cout<<"End point: "<<x<<" - "<<y<<std::endl;
+            std::cout<<"End point: "<<x<<" "<<y<<std::endl;
             stopDraw = true;
         }
     }
@@ -61,15 +62,19 @@ void Mouse::setYorigin(int y) {
 }
 
 void Mouse::fillColor(int x, int y) {
-    RGBColor color;
-    color.r = 200;
-    color.g = 0;
-    color.b = 0;
+    RGBColor color1;
+    color1.r = 0;
+    color1.g = 1;
+    color1.b = 0;
+    
+    RGBColor color2;
+    color2.r = 1;
+    color2.g = 0;
+    color2.b = 0;
     
     for(auto pt: rectangleCollector) {
-        if (pt.checkInside(x, HEIGHT-y)) {
-            BoundaryFill(x, HEIGHT-y, color, color);
-//            usleep(100);
+        if (pt.checkInside(x,HEIGHT-y)) {
+            BoundaryFill(x, y, color1, color2);
             clearColorMenu();
         }
     }

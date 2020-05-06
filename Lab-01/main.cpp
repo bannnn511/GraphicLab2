@@ -15,7 +15,7 @@
 int main(int argc, char * argv[]) {
     
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_ALPHA);
 //    glutInitWindowPosition(100,100);
     glutInitWindowSize(WIDTH, HEIGHT);
     glutCreateWindow("Lab2");
@@ -138,6 +138,10 @@ void display(void) {
         }
     }
     
+    if (red||green||blue) {
+        mouse->fillColor(currentPxl.x, currentPxl.y);
+    }
+    
     glutSwapBuffers();
 }
 
@@ -188,19 +192,30 @@ void parabolaTruth() {
     }
 }
 
+//MARK: PUT PIXEL
 void putPixel(int x, int y, RGBColor color) {
-    unsigned char *ptr = new unsigned char [3];
-    ptr[0] = color.r;
-    ptr[1] = color.g;
-    ptr[2] = color.b;
+//    unsigned char *ptr = new unsigned char [3];
+//    ptr[0] = color.r;
+//    ptr[1] = color.g;
+//    ptr[2] = color.b;
+//
+//    glRasterPos2i(x, y);
+//    glDrawPixels(1, 1, GL_RGB, GL_UNSIGNED_BYTE, ptr);
     
-    glRasterPos2f(x, y);
-    glDrawPixels(1, 1, GL_RGB, GL_UNSIGNED_BYTE, ptr);
-    delete ptr;
-    
-    //    glBegin(GL_POINTS);
-    //    glVertex2f(x, y);
-    //    glEnd();
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_POINTS);
+    glVertex2f(x, y);
+    std::cout<<"Put pixel at x: "<<x<<" y: "<<y<<std::endl;
+    glEnd();
+//    RGBColor currentColor = getPixel(x, y);
+//
+//    bool checkFcolor = isTheSameColor(currentColor, color);
+//    if (checkFcolor) {
+//        std::cout<<"Same color"<<std::endl;
+//    } else {
+//        std::cout<<"Different color"<<std::endl;
+//    }
+//    delete[] ptr;
 }
 
 std::vector<std::vector<int>> readFile() {
@@ -224,26 +239,25 @@ std::vector<std::vector<int>> readFile() {
     return data;
 }
 
-void capture(GLFWwindow* window){
-    int screenWidth, screenHeight;
-    
-    glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
+void capture(){
     GLfloat *p;
     p = new GLfloat[3*WIDTH * HEIGHT];
     glReadPixels(0, 0, WIDTH, HEIGHT, GL_RGB, GL_FLOAT, p);
+    std::cout<<p<<std::endl;
     for (int a = 0; a < 3*WIDTH * HEIGHT-2; a = a + 3) {
         //cout << p[i] << endl;
         int i = a;
-        if (p[i] == float(0) && p[i+1] == float(0) && p[i+2]== float(1)) {
-            float row = i / ( 3*(screenHeight-1));
-            float column = i / ( 3*(screenWidth-1));
+        if (p[i] == float(1) && p[i+1] == float(0) && p[i+2]== float(0)) {
+            float row = i / ( 3*WIDTH);
+            float column = i % ( 3*WIDTH);
             std::cout << row << " " << column << std::endl;
+            glColor3f(0, 0, 0);
             glBegin(GL_POINTS);
             glVertex2i(row, column);
             glEnd();
         }
     }
-    delete p;
+    delete [] p;
 }
 
 //MARK:- Draw shape
@@ -338,16 +352,33 @@ void calculateMSE(std::vector<Pixel> data, std::vector<Pixel> standard) {
 
 void changeSize(int w, int h) {
 
-    glViewport(0, 0, w, h);
+    // (you cant make a window of zero width).
+    if (h == 0)
+        h = 1;
+    
+    float ratio =  w * 1.0 / h;
+    
+    // Use the Projection Matrix
     glMatrixMode(GL_PROJECTION);
+    
+    // Reset Matrix
     glLoadIdentity();
-    glOrtho(0, WIDTH, 0, HEIGHT, -1, 1);
+    
+    // Set the viewport to be the entire window
+    glViewport(0, 0, w, h);
+    
+    // Set the correct perspective.
+//    gluPerspective(45,ratio,1,100);
+    
+    // Get Back to the Modelview
+    glOrtho(0, w, 0, h, -1, 1);
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    WIDTH = w;
+    HEIGHT = h;
     display();
 }
 
-
+//MARK:- COLORING
 bool isTheSameColor(RGBColor current, RGBColor now) {
     if (current.b == now.b && current.g == now.g && current.r == now.r) {
         return true;
@@ -357,12 +388,14 @@ bool isTheSameColor(RGBColor current, RGBColor now) {
 
 RGBColor getPixel(int x, int y) {
     unsigned char * ptr = new unsigned char [3];
-    glReadPixels(x, 800-y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, ptr);
+    glReadPixels(x, HEIGHT-y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, ptr);
+
     RGBColor color;
     color.r = ptr[0];
     color.g = ptr[1];
     color.b = ptr[2];
-    delete ptr;
+    
+    delete[] ptr;
     return color;
 }
 
@@ -370,10 +403,13 @@ void BoundaryFill(int x, int y, RGBColor fColor, RGBColor bColor) {
     RGBColor currentColor;
     
     currentColor = getPixel(x, y);
+    bool checkFcolor = isTheSameColor(currentColor, fColor);
+    bool checkBcolor = isTheSameColor(currentColor, bColor);
     
-    if(!isTheSameColor(currentColor, bColor) && !isTheSameColor(currentColor, fColor)) {
+    if ( !checkFcolor && !checkBcolor) {
+        glutSwapBuffers();
         putPixel(x, y, fColor);
-        std::cout<<"Coloring..."<<std::endl;
+        std::cout<<"Coloring...at x: "<<x<<" y: "<<y<<std::endl;
         BoundaryFill(x-1, y, fColor, bColor);
         BoundaryFill(x, y+1, fColor, bColor);
         BoundaryFill(x+1, y, fColor, bColor);

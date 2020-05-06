@@ -20,7 +20,7 @@ private:
     static Mouse *mouse;
     
     Mouse() {}
-    void fillColor(int, int);
+   
 public:
     static Mouse *getInstance() {
         if (mouse == NULL) {
@@ -31,6 +31,7 @@ public:
     static void mouseButton(int, int, int, int);
     static void mouseMove(int, int);
     
+    void fillColor(int, int);
     int getXorigin();
     int getYorigin();
     void setXorigin(int);

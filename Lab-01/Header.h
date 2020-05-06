@@ -13,7 +13,7 @@
 #include "glew.h"
 #include "glfw3.h"
 
-static int WIDTH = 800, HEIGHT = 500;
+inline int WIDTH = 800, HEIGHT = 500;
 
 typedef struct RGBColor {
     unsigned char r;
@@ -76,7 +76,7 @@ inline bool coloring = false;
 void init();
 std::vector< std::vector<int> > readFile();
 
-void capture(GLFWwindow* window);
+void capture();
 
 void calculateMSE(std::vector<Pixel>, std::vector<Pixel>);
 
