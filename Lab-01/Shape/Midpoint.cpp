@@ -62,3 +62,11 @@ int MidPoint::fCircle(int x, int y) {
     return  x*x + y*y - r*r;
 }
 
+bool MidPoint::checkInside(int x1, int y1) {
+    if ((x1<x+r) && (x1>x-r) && (y1<y+r) && (y1>(y-r))) {
+        std::cout<<"Circle inside"<<std::endl;
+        return true;
+    }
+    std::cout<<"Circle outside"<<std::endl;
+    return false;
+}

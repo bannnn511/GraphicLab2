@@ -13,7 +13,7 @@
 int main(int argc, char * argv[]) {
     
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(WIDTH, HEIGHT);
     glutCreateWindow("Lab2");
@@ -409,4 +409,5 @@ void BoundaryFill(int x, int y, RGBColor fColor, RGBColor bColor) {
         BoundaryFill(x-1, y, fColor, bColor);
         BoundaryFill(x, y-1, fColor, bColor);
     }
+//    glutSwapBuffers();
 }
