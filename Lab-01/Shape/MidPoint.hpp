@@ -26,6 +26,7 @@ public:
     std::vector<Pixel> drawCircle();
     int fCircle(int, int);
 //    Pixel centerMidpoint();
+    int checkInside(int, int);
 };
 
 #endif /* MidPoint_hpp */

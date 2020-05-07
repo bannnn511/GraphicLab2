@@ -66,16 +66,16 @@ void Mouse::setYorigin(int y) {
 void Mouse::fillColor(int x, int y) {
     RGBColor color1;
     color1.r = 0;
-    color1.g = 1;
+    color1.g = 200;
     color1.b = 0;
     
     RGBColor color2;
-    color2.r = 1;
+    color2.r = 200;
     color2.g = 0;
     color2.b = 0;
     
     for(auto pt: rectangleCollector) {
-        if (pt.checkInside(x,HEIGHT-y)) {
+        if (pt.checkInside(x,y)) {
             BoundaryFill(x, y, color1, color2);
             clearColorMenu();
         }

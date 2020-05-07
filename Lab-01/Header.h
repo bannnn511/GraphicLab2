@@ -10,10 +10,8 @@
 #ifndef Header_h
 #define Header_h
 
-#include "glew.h"
-#include "glfw3.h"
 
-inline int WIDTH = 800, HEIGHT = 500;
+inline int WIDTH = 800, HEIGHT = 600;
 
 typedef struct RGBColor {
     unsigned char r;
@@ -33,6 +31,7 @@ typedef struct RGBColor {
 #include <algorithm>
 #include <array>
 #include <unistd.h>
+
 
 #include "Pixel.cpp"
 #include "Line.hpp"
@@ -66,6 +65,7 @@ inline std::vector<Ellipse> ellipseCollector;
 inline std::vector<MidPoint> circleCollector;
 inline std::vector<Rectangle> rectangleCollector;
 inline std::vector<Polygon> polygonCollector;
+inline std::vector<std::tuple<Pixel,RGBColor>> color;
 
 inline Polygon poly;
 
