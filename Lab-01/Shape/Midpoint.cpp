@@ -16,9 +16,9 @@ std::vector<Pixel> MidPoint::drawCircle() {
     double p = 1 - r;
     
     RGBColor color;
-    color.r = 200;
-    color.g = 0;
-    color.b = 0;
+    color.r = 255;
+    color.g = 255;
+    color.b = 255;
     
     putPixel(x0+x, y0+y, color);
     data.push_back(Pixel(x0+x,y0+y));

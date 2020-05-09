@@ -67,7 +67,7 @@ inline std::vector<Rectangle> rectangleCollector;
 inline std::vector<Polygon> polygonCollector;
 inline std::vector<std::tuple<Pixel,RGBColor>> color;
 
-inline Polygon poly;
+inline std::vector<Pixel> poly;
 
 inline bool red = false;
 inline bool green = false;

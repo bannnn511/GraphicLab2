@@ -64,9 +64,9 @@ std::vector<Pixel> Bresenham::drawLineLow(int x1, int y1, int x2, int y2) {
     int D = 2 * dY - dX;
     int y = y1;
     RGBColor color;
-    color.r = 200;
-    color.g = 0;
-    color.b = 0;
+    color.r = 255;
+    color.g = 255;
+    color.b = 255;
     for (int x = x1; x<=x2; x++) {
         putPixel(x, y, color);
         data.push_back(Pixel(x, y));
@@ -92,9 +92,9 @@ std::vector<Pixel> Bresenham::drawLineHigh(int x1, int y1, int x2,int y2) {
     int x = x1;
     
     RGBColor color;
-    color.r = 200;
-    color.g = 0;
-    color.b = 0;
+    color.r = 255;
+    color.g = 255;
+    color.b = 255;
     
     for (int y = y1; y<=y2; y++) {
         putPixel(x, y, color);

@@ -20,7 +20,7 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
     std::cout<<"Mouse click x:"<<x<<" y: "<<HEIGHT - y<<std::endl;    
     if (button == GLUT_LEFT_BUTTON) {
         if (state == GLUT_DOWN) {
-            if (stopDraw) {
+            if (stopDraw && polygon == false) {
                 pts.clear();
             }
             
@@ -32,16 +32,13 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
                 std::cout<<"Push cooor: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
                 pts.push_back(currentPxl);
                 if (polygon == true) {
-                    poly.addPoint(Pixel(currentPxl.x, currentPxl.y));
+                    poly.push_back(Pixel(currentPxl.x, currentPxl.y));
                 }
             }
         } else {
-            if (polygon == false)
             std::cout<<"End point: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
             stopDraw = true;
-            }
-    } else if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ) {
-        stopDraw = true;
+        }
     }
     
     glutPostRedisplay();

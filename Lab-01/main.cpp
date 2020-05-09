@@ -48,6 +48,7 @@ void init() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 //    glPointSize(5);
+
 }
 
 void changeSize(int w, int h) {
@@ -118,20 +119,31 @@ void display(void) {
     }
     
     if (polygon == true) {
-        Pixel pxl = Pixel(-1,-1);
-        for (auto pt: pts)
-            pxl = Pixel(pt.x, pt.y);
-        auto &endPt = stopDraw? pts.back() : currentPxl;
-        Bresenham bsh(pxl.x, pxl.y, endPt.x, endPt.y);
-        bsh.drawLine();
-//
-//        if (stopDraw == true) {
-//            poly.addPoint(endPt);
-//            poly.drawPolygon();
-//            polygonCollector.push_back(poly);
-//        }
+//        Pixel pxl = Pixel(-1,-1);
+//        for (auto pt: pts)
+//            pxl = Pixel(pt.x, pt.y);
+//        auto &endPt = stopDraw? pts.back() : currentPxl;
+        
+//        Bresenham bsh(pxl.x, pxl.y, endPt.x, endPt.y);
+//        bsh.drawLine();
+        for (int i =0; i <= poly.size() -1; i++)
+            glBegin(GL_LINE_STRIP);
+        for(int i =0; i < poly.size();i++)
+        {
+            glVertex2i(poly[i].x, poly[i].y);
+        }
+        glEnd();
     }
-    
+    if(polygon == false && !poly.empty()) {
+        glBegin(GL_LINE_STRIP);
+        for(int i =0; i < poly.size();i++) {
+            glVertex2i(poly[i].x, poly[i].y);
+        }
+        glVertex2i(poly[0].x, poly[0].y);
+        glVertex2i(poly[poly.size()-1].x, poly[poly.size()-1].y);
+        glEnd();
+        
+    }
     if (!rectangleCollector.empty()) {
         for(auto pt: rectangleCollector){
             pt.drawRectangle();
@@ -412,3 +424,4 @@ void BoundaryFill(int x, int y, RGBColor fColor, RGBColor bColor) {
     }
 //    glutSwapBuffers();
 }
+

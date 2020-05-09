@@ -44,6 +44,7 @@ void processMainMenu(int option) {
             glutPostRedisplay();
             break;
         default:
+            glutPostRedisplay();
             break;
     }
 }
