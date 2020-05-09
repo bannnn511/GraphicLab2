@@ -40,6 +40,7 @@ void processMainMenu(int option) {
             circleCollector.clear();
             ellipseCollector.clear();
             polygonCollector.clear();
+            poly.clear();
             glutPostRedisplay();
             break;
         default:

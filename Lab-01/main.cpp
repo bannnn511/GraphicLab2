@@ -13,13 +13,13 @@
 int main(int argc, char * argv[]) {
     
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(WIDTH, HEIGHT);
     glutCreateWindow("Lab2");
     
     init();
-    
+     glutDisplayFunc(display);
     Mouse *mouse = mouse->getInstance();
     glutMouseFunc(mouse->mouseButton);
     glutMotionFunc(mouse->mouseMove);
@@ -27,7 +27,7 @@ int main(int argc, char * argv[]) {
     createPopupMenu();
     
     glutDisplayFunc(display);
-    glutReshapeFunc(changeSize);
+//    glutReshapeFunc(changeSize);
     
     glutMainLoop();
     
@@ -39,15 +39,15 @@ void init() {
     
     glClearColor(0, 0, 0, 0);
     
-    glViewport(0, 0, WIDTH, HEIGHT);
+    glViewport(0,0, 2*WIDTH, 2*HEIGHT);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-//    gluOrtho2D(0, WIDTH, 0, HEIGHT);
+    gluOrtho2D(0, WIDTH, 0, HEIGHT);
     glMatrixMode(GL_MODELVIEW);
-    
-    glPointSize(5);
+    glLoadIdentity();
+//    glPointSize(5);
 }
 
 void changeSize(int w, int h) {
@@ -61,7 +61,7 @@ void changeSize(int w, int h) {
     glLoadIdentity();
 
    // Set the viewport to be the entire window
-    glViewport(0, 0, w, h);
+    glViewport(0, 0, 2*w, 2*h);
     gluOrtho2D(0, w, 0, h);
    // Set the clipping volume
 //   gluPerspective(45,ratio,0.1,1000);
@@ -72,7 +72,7 @@ void changeSize(int w, int h) {
 
 //MARK:- DISPLAY
 void display(void) {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
     //    std::vector<std::vector<int>> data = readFile();
     //    drawShape(data);
     
@@ -121,13 +121,15 @@ void display(void) {
         Pixel pxl = Pixel(-1,-1);
         for (auto pt: pts)
             pxl = Pixel(pt.x, pt.y);
-        auto &endPt = stopDraw? pts.front() : currentPxl;
+        auto &endPt = stopDraw? pts.back() : currentPxl;
         Bresenham bsh(pxl.x, pxl.y, endPt.x, endPt.y);
         bsh.drawLine();
-        if (stopDraw == true) {
-            poly.addPoint(endPt);
-            poly.drawPolygon();
-        }
+//
+//        if (stopDraw == true) {
+//            poly.addPoint(endPt);
+//            poly.drawPolygon();
+//            polygonCollector.push_back(poly);
+//        }
     }
     
     if (!rectangleCollector.empty()) {
@@ -149,10 +151,10 @@ void display(void) {
     
     if(!polygonCollector.empty()) {
         for (auto pt:polygonCollector) {
-            std::cout<<"Drawing polygon"<<std::endl;
             pt.drawPolygon();
         }
     }
+    
     
     if(!color.empty()) {
         for (auto clr:color) {
@@ -234,7 +236,6 @@ void putPixel(int x, int y, RGBColor color) {
 //    glVertex2f(x, y);
 ////    std::cout<<"Put pixel at x: "<<x<<" y: "<<y<<std::endl;
 //    glEnd();
-    
 
 }
 

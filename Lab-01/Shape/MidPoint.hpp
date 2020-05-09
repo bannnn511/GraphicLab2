@@ -16,9 +16,9 @@ class MidPoint {
 private:
     int x;
     int y;
-    int r;
+    double r;
 public:
-    MidPoint(int x, int y, int r) {
+    MidPoint(int x, int y, double r) {
         this->x = x;
         this->y = y;
         this->r = r;

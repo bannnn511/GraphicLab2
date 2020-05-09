@@ -18,6 +18,7 @@ private:
 public:
     void drawPolygon();
     void addPoint(Pixel x);
+    void clear();
 };
 
 #endif /* Polygon_hpp */

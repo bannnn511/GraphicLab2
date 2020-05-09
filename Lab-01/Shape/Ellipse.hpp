@@ -25,6 +25,7 @@ public:
         this->rB = rB;
     }
     void drawEllipse();
+    bool checkInside(int, int);
 };
 
 #endif /* Eclipse_hpp */

@@ -65,3 +65,10 @@ void Ellipse::drawEllipse() {
     }
     
 }
+
+bool Ellipse::checkInside(int x1, int y1) {
+    if ((x1<rA+x) && (x1>x-rA) && (y1<y+rB) && (y1>y-rB)) {
+        return true;
+    }
+    return false;
+}
