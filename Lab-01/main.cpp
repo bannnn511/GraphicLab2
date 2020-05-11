@@ -27,7 +27,7 @@ int main(int argc, char * argv[]) {
     createPopupMenu();
     
     glutDisplayFunc(display);
-//    glutReshapeFunc(changeSize);
+    glutReshapeFunc(changeSize);
     
     glutMainLoop();
     
@@ -119,31 +119,24 @@ void display(void) {
     }
     
     if (polygon == true) {
-//        Pixel pxl = Pixel(-1,-1);
-//        for (auto pt: pts)
-//            pxl = Pixel(pt.x, pt.y);
-//        auto &endPt = stopDraw? pts.back() : currentPxl;
-        
-//        Bresenham bsh(pxl.x, pxl.y, endPt.x, endPt.y);
-//        bsh.drawLine();
-        for (int i =0; i <= poly.size() -1; i++)
+        for (int i =0; i <= poly.size() -1; i++) {
             glBegin(GL_LINE_STRIP);
-        for(int i =0; i < poly.size();i++)
-        {
-            glVertex2i(poly[i].x, poly[i].y);
         }
-        glEnd();
-    }
-    if(polygon == false && !poly.empty()) {
-        glBegin(GL_LINE_STRIP);
         for(int i =0; i < poly.size();i++) {
             glVertex2i(poly[i].x, poly[i].y);
         }
-        glVertex2i(poly[0].x, poly[0].y);
-        glVertex2i(poly[poly.size()-1].x, poly[poly.size()-1].y);
         glEnd();
-        
     }
+    
+    if (polygon == false && !poly.empty()) {
+          Polygon newPoly = Polygon();
+        for (auto pt: poly) {
+            newPoly.addPoint(pt);
+        }
+        polygonCollector.push_back(newPoly);
+        poly.clear();
+    }
+    
     if (!rectangleCollector.empty()) {
         for(auto pt: rectangleCollector){
             pt.drawRectangle();
@@ -243,11 +236,6 @@ void putPixel(int x, int y, RGBColor color) {
     glDrawPixels(1, 1, GL_RGBA, GL_UNSIGNED_BYTE, ptr);
     delete[] ptr;
     
-//    glColor3f(color.r, color.g, color.b);
-//    glBegin(GL_POINTS);
-//    glVertex2f(x, y);
-////    std::cout<<"Put pixel at x: "<<x<<" y: "<<y<<std::endl;
-//    glEnd();
 
 }
 

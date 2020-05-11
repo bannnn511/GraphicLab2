@@ -10,19 +10,14 @@
 #include "Header.h"
 
 void Polygon::drawPolygon() {
-    
-    if (pts.size()<=2) {
-        return;
-    }
-    for (size_t i = 0; i <= pts.size(); i++) {
-        if (i+1 == i && polygon == false) {
-            Bresenham bsh = Bresenham(pts[0].x, pts[0].y, pts[i].x, pts[i].y);
-            bsh.drawLine();
-            return;
+    if (!pts.empty()) {
+        glBegin(GL_LINE_STRIP);
+        for(int i =0; i < pts.size(); i++) {
+            glVertex2i(pts[i].x, pts[i].y);
         }
-        Bresenham bsh = Bresenham(pts[i].x, pts[i].y, pts[i+1].x, pts[i+1].y);
-        bsh.drawLine();
-        std::cout<<"Drawing polygon"<<std::endl;
+        glVertex2i(pts[0].x, pts[0].y);
+        glVertex2i(pts[pts.size()-1].x, pts[pts.size()-1].y);
+        glEnd();
     }
 }
 
