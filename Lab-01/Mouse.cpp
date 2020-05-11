@@ -90,22 +90,23 @@ void Mouse::fillColor(int x, int y) {
     for(auto pt: rectangleCollector) {
         if (pt.checkInside(x,y)) {
             BoundaryFill(x, y, color1, color2);
-             clearColorMenu();
         }
     }
     
     for(auto pt: circleCollector) {
         if (pt.checkInside(x,y)) {
             BoundaryFill(x, y, color1, color2);
-            clearColorMenu();
         }
     }
     
     for(auto pt: ellipseCollector){
         if (pt.checkInside(x, y)) {
             BoundaryFill(x, y, color1, color2);
-            clearColorMenu();
         }
     }
-   
+    
+    for (auto pt: polygonCollector) {
+        BoundaryFill(x, y, color1, color2);
+    }
+     clearColorMenu();
 }

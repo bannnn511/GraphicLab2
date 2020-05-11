@@ -36,6 +36,7 @@ void processMainMenu(int option) {
         case 4:
             std::cout<<"Clear"<<std::endl;
             pts.clear();
+            poly.clear();
             rectangleCollector.clear();
             circleCollector.clear();
             ellipseCollector.clear();

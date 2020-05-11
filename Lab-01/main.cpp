@@ -39,7 +39,7 @@ void init() {
     
     glClearColor(0, 0, 0, 0);
     
-    glViewport(0,0, 2*WIDTH, 2*HEIGHT);
+    glViewport(0,0, WIDTH, HEIGHT);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -62,7 +62,7 @@ void changeSize(int w, int h) {
     glLoadIdentity();
 
    // Set the viewport to be the entire window
-    glViewport(0, 0, 2*w, 2*h);
+    glViewport(0, 0, w, h);
     gluOrtho2D(0, w, 0, h);
    // Set the clipping volume
 //   gluPerspective(45,ratio,0.1,1000);
