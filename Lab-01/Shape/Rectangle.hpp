@@ -28,6 +28,10 @@ public:
     void drawRectangle();
     Pixel getCenterPoint();
     bool checkInside(int, int);
+    Rectangle transformation();
+    void translation(int);
+    void scaling(int);
+    
 };
 
 #endif /* Rectangle_hpp */

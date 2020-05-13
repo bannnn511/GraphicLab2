@@ -19,12 +19,16 @@ int main(int argc, char * argv[]) {
     glutCreateWindow("Lab2");
     
     init();
-     glutDisplayFunc(display);
+    glutDisplayFunc(display);
+    
     Mouse *mouse = mouse->getInstance();
     glutMouseFunc(mouse->mouseButton);
     glutMotionFunc(mouse->mouseMove);
     
     createPopupMenu();
+    
+    glutKeyboardFunc(processKeyboard);
+    glutSpecialFunc(processSpecialKeys);
     
     glutDisplayFunc(display);
     glutReshapeFunc(changeSize);
@@ -138,8 +142,11 @@ void display(void) {
     }
     
     if (!rectangleCollector.empty()) {
-        for(auto pt: rectangleCollector){
-            pt.drawRectangle();
+        for (int i=0; i<=rectangleCollector.size()-1;i++) {
+            if (transformation == true) {
+                rectangleCollector[i] = rectangleCollector[i].transformation();
+            }
+            rectangleCollector[i].drawRectangle();
         }
     }
     if (!ellipseCollector.empty() ) {
@@ -173,7 +180,7 @@ void display(void) {
     if (red||green||blue) {
         mouse->fillColor(currentPxl.x, currentPxl.y);
     }
-    
+    pts.clear();
     glutSwapBuffers();
 }
 
@@ -231,7 +238,7 @@ void putPixel(int x, int y, RGBColor color) {
     ptr[1] = color.g;
     ptr[2] = color.b;
     
-//    glDrawBuffer(GL_FRONT);
+    glDrawBuffer(GL_FRONT);
     glRasterPos2i(x, y);
     glDrawPixels(1, 1, GL_RGBA, GL_UNSIGNED_BYTE, ptr);
     delete[] ptr;

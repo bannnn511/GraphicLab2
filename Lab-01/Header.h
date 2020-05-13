@@ -46,6 +46,7 @@ typedef struct RGBColor {
 
 #include "Menu.hpp"
 #include "Mouse.hpp"
+#include "Keyboard.hpp"
 
 //MARK:- WINDOW
 static int window; 
@@ -73,6 +74,20 @@ inline bool red = false;
 inline bool green = false;
 inline bool blue = false;
 inline bool coloring = false;
+inline bool transformation = false;
+inline int x01 = 100, x02=400, y01 =500, y02 =700;
+enum KeyboardButton {
+    Lockwise,
+    CounterLockwise,
+    Up,
+    Down,
+    Left,
+    Right,
+    Bigger,
+    Smaller
+};
+
+inline KeyboardButton KEY;
 
 void init();
 std::vector< std::vector<int> > readFile();

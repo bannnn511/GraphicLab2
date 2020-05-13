@@ -17,6 +17,7 @@
 		180F4C6A24573361002612A2 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180F4C6824573361002612A2 /* Menu.cpp */; };
 		185336C52449DF60004C01D9 /* Bresenham.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185336C32449DF60004C01D9 /* Bresenham.cpp */; };
 		18AF85DA245271BE00A9CEDC /* Pixel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AF85D9245271BE00A9CEDC /* Pixel.cpp */; };
+		18B5AABB246993FC00542C8D /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AAB9246993FC00542C8D /* Keyboard.cpp */; };
 		18BDACE4244A938700AD5C2F /* Midpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18BDACE2244A938700AD5C2F /* Midpoint.cpp */; };
 		18C8C514244878CB0082F1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C8C513244878CB0082F1A3 /* main.cpp */; };
 		18C8C51C244879600082F1A3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8C51B244879600082F1A3 /* OpenGL.framework */; };
@@ -57,6 +58,8 @@
 		185336C32449DF60004C01D9 /* Bresenham.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bresenham.cpp; sourceTree = "<group>"; };
 		185336C42449DF60004C01D9 /* Bresenham.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bresenham.hpp; sourceTree = "<group>"; };
 		18AF85D9245271BE00A9CEDC /* Pixel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pixel.cpp; sourceTree = "<group>"; };
+		18B5AAB9246993FC00542C8D /* Keyboard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Keyboard.cpp; sourceTree = "<group>"; };
+		18B5AABA246993FC00542C8D /* Keyboard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Keyboard.hpp; sourceTree = "<group>"; };
 		18BDACE2244A938700AD5C2F /* Midpoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Midpoint.cpp; sourceTree = "<group>"; };
 		18BDACE3244A938700AD5C2F /* MidPoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MidPoint.hpp; sourceTree = "<group>"; };
 		18BDACE6244AF24800AD5C2F /* Line.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				180F4C6924573361002612A2 /* Menu.hpp */,
 				18F492982457DD9800B18015 /* Mouse.cpp */,
 				18F492992457DD9800B18015 /* Mouse.hpp */,
+				18B5AAB9246993FC00542C8D /* Keyboard.cpp */,
+				18B5AABA246993FC00542C8D /* Keyboard.hpp */,
 			);
 			path = "Lab-01";
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B5AABB246993FC00542C8D /* Keyboard.cpp in Sources */,
 				180F4C6A24573361002612A2 /* Menu.cpp in Sources */,
 				18F4929A2457DD9800B18015 /* Mouse.cpp in Sources */,
 				1808BCD3245BD3380049FF91 /* Circle.cpp in Sources */,
