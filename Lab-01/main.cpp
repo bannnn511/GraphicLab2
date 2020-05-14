@@ -145,6 +145,7 @@ void display(void) {
         for (int i=0; i<=rectangleCollector.size()-1;i++) {
             if (transformation == true) {
                 rectangleCollector[i] = rectangleCollector[i].transformation();
+//                transformation = false;
             }
             rectangleCollector[i].drawRectangle();
         }
@@ -162,8 +163,12 @@ void display(void) {
     }
     
     if(!polygonCollector.empty()) {
-        for (auto pt:polygonCollector) {
-            pt.drawPolygon();
+        for (int i=0; i <= polygonCollector.size() -1; i++) {
+            if (transformation == true) {
+                polygonCollector[i].transformation();
+                
+            }
+            polygonCollector[i].drawPolygon();
         }
     }
     
@@ -180,7 +185,7 @@ void display(void) {
     if (red||green||blue) {
         mouse->fillColor(currentPxl.x, currentPxl.y);
     }
-    pts.clear();
+    
     glutSwapBuffers();
 }
 

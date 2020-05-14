@@ -15,10 +15,17 @@
 class Polygon {
 private:
     std::vector<Pixel> pts;
+    int angle = 1;
 public:
     void drawPolygon();
     void addPoint(Pixel x);
     void clear();
+    
+    Polygon transformation();
+    
+    void translation(int);
+    void scaling(int);
+    void rotation(int);
 };
 
 #endif /* Polygon_hpp */

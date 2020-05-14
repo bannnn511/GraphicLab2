@@ -47,6 +47,11 @@ Rectangle Rectangle::transformation() {
     if (KEY == Bigger || KEY == Smaller) {
         scaling(KEY);
     }
+    
+    if (KEY == Lockwise || KEY == CounterLockwise) {
+        rotation(KEY);
+    }
+     std::cout<<"x1: "<<x1<<" x2: "<<x2 <<" y1: "<<y1<<" y2 "<<y2<<std::endl;
     return Rectangle(x1,y1,x2,y2);
 }
 
@@ -71,45 +76,50 @@ void Rectangle::translation(int key) {
         default:
             break;
     }
-    std::cout<<"x1: "<<x1<<" x2: "<<x2 <<" y1: "<<y1<<" y2 "<<y2<<std::endl;
 }
 
 void Rectangle::scaling(int key) {
-    int temp;
-    // make x1 and y1 allways smaller
-    if (x1>x2) {
-        temp = x1;
-        x1 = x2;
-        x2 = temp;
-    }
-    
-    if (y1>y2) {
-        temp = y1;
-        y1 = y2;
-        y2 = temp;
-    }
-    
-    double det = (x2-x1)*(y2-y1);
-    switch (KEY) {
+    double increment = 1;
+    switch (key) {
         case Bigger: {
-            double newDet = det*110/100;
-            double increment = sqrt(newDet/det)/2;
-            y1-=increment;
-            y2+=increment;
-            x1-=increment;
-            x2+=increment;
+            increment = 1.1;
             break;
         }
         case Smaller: {
-            double newDet = det *100/110;
-            double increment = sqrt(newDet/det)/2;
-            x1+=increment;
-            x2-=increment;
-            y1+=increment;
-            y2-=increment;
+            increment = 0.90909091;
             break;
         }
         default:
             break;
     }
+    y1*=increment;
+    y2*=increment;
+    x1*=increment;
+    x2*=increment;
+}
+
+void Rectangle::rotation(int key) {
+    double xold1 = x1;
+    double xold2 = x2;
+    double yold1 = y1;
+    double yold2 = y2;
+    
+    double c = cos(angle *3.14/180);
+    double s = sin(angle *3.14/180);
+    switch (key) {
+        case Lockwise:
+            x1 = xold1*c + yold1*s;
+            y1 = -xold1*s + yold1*c;
+            x2 = xold2*c + yold2*s;
+            y2 = -xold2*s + yold2*c;
+            break;
+            
+        case CounterLockwise:
+            x1 = xold1*c - yold1*s;
+            y1 = xold1*s + yold1*c;
+            x2 = xold2*c - yold2*s;
+            y2 = xold2*s + yold2*c;
+            break;
+    }
+    angle++;
 }

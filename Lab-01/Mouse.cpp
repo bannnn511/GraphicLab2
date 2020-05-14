@@ -38,10 +38,11 @@ void Mouse::mouseButton(int button, int state, int x, int y) {
         } else {
             std::cout<<"End point: "<<currentPxl.x<<" "<<currentPxl.y<<std::endl;
             stopDraw = true;
+            glutPostRedisplay();
         }
     }
     
-    glutPostRedisplay();
+//    glutPostRedisplay();
 }
 
 void Mouse::mouseMove(int x, int y) {
