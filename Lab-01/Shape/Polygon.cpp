@@ -35,6 +35,14 @@ void Polygon::clear() {
     pts.clear();
 }
 
+int Polygon::size() {
+    return pts.size();
+}
+
+Pixel Polygon::getPointByIndex(int index) {
+    return Pixel(pts[index].x, pts[index].y);
+}
+
 Polygon Polygon::transformation() {
     if (KEY == Left || KEY == Right || KEY == Up || KEY == Down) {
         translation(KEY);

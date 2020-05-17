@@ -21,11 +21,13 @@ public:
     void addPoint(Pixel x);
     void clear();
     
+    Pixel getPointByIndex(int);
     Polygon transformation();
     
     void translation(int);
     void scaling(int);
     void rotation(int);
+    int size();
 };
 
 #endif /* Polygon_hpp */

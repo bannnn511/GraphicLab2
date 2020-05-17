@@ -75,7 +75,7 @@ inline bool green = false;
 inline bool blue = false;
 inline bool coloring = false;
 inline bool transformation = false;
-inline int x01 = 100, x02=400, y01 =500, y02 =700;
+
 enum KeyboardButton {
     Lockwise,
     CounterLockwise,
@@ -85,6 +85,12 @@ enum KeyboardButton {
     Right,
     Bigger,
     Smaller
+};
+
+enum Orientation {
+    LockWise,
+    CounterLockWise,
+    Colinear
 };
 
 inline KeyboardButton KEY;
@@ -109,8 +115,15 @@ void parabolaTruth();
 
 void createMenu();
 
+// MARK: Coloring
 bool isTheSameColor(RGBColor, RGBColor);
 RGBColor getPixel(int x, int y);
 void BoundaryFill(int x, int y, RGBColor fColor, RGBColor bColor);
+
+// MARK: check points inside
+bool onSegment(Pixel, Pixel, Pixel);
+Orientation orientation(Pixel, Pixel, Pixel);
+bool dotIntersect(Pixel, Pixel, Pixel);
+bool isInside(Polygon, Pixel);
 #endif /* Header_h */
 

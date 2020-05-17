@@ -164,9 +164,11 @@ void display(void) {
     
     if(!polygonCollector.empty()) {
         for (int i=0; i <= polygonCollector.size() -1; i++) {
-            if (transformation == true) {
-                polygonCollector[i].transformation();
-                
+            if (isInside(polygonCollector[i], Pixel(currentPxl.x, currentPxl.y))) {
+                if (transformation == true) {
+                    polygonCollector[i].transformation();
+                    transformation = false;
+                }
             }
             polygonCollector[i].drawPolygon();
         }
@@ -425,3 +427,63 @@ void BoundaryFill(int x, int y, RGBColor fColor, RGBColor bColor) {
 //    glutSwapBuffers();
 }
 
+// MARK:- CHECK POINT INSIDE
+
+bool onSegment(Pixel p1, Pixel p2, Pixel p3) {
+    if (p1.x <= std::max(p2.x, p2.y) && p1.x >= std::min(p2.x, p3.x) && p1.y <= std::max(p2.y, p3.y) && p1.y >= std::min(p2.y, p3.y))
+        return true;
+    return false;
+}
+
+Orientation orientation(Pixel p1, Pixel p2, Pixel p3) {
+    int val = (p3.x-p2.x)*(p2.y-p1.y) - (p2.x-p1.x)*(p3.y-p2.y);
+    if (val ==0 ) {
+        return Orientation::Colinear;
+    }
+    return val > 1 ? Orientation::LockWise : Orientation::CounterLockWise;
+    
+}
+
+bool dotIntersect(Pixel p1, Pixel p2, Pixel p3, Pixel p4) {
+    int o1 = orientation(p1, p2, p3);
+    int o2 = orientation(p1, p2, p4);
+    int o3 = orientation(p3, p4, p1);
+    int o4 = orientation(p3, p4, p2);
+    
+    if (o1 != o2 && o3 != o4)
+        return true;
+    
+    if (o1 == Orientation::Colinear && onSegment(p3, p2, p1)) return true;
+    if (o2 == Orientation::Colinear && onSegment(p4, p2, p1)) return true;
+    if (o3 == Orientation::Colinear && onSegment(p1, p3, p4)) return true;
+    if (o4 == Orientation::Colinear && onSegment(p2, p3, p4)) return true;
+    
+    return false;
+}
+
+bool isInside(Polygon poly, Pixel p) {
+    if (poly.size() < 3) return false;
+    
+    Pixel infinity = Pixel(p.y, WIDTH);
+    
+    int count = 0;
+    for (int i = 0; i < poly.size()-1; i++) {
+        int next = i +1;
+        if (next <= poly.size()) {
+            if (dotIntersect(poly.getPointByIndex(i), poly.getPointByIndex(next), infinity, p)){
+                
+//                if (orientation(poly.getPointByIndex(i), poly.getPointByIndex(next), p) == Orientation::Colinear) {
+//                    return onSegment(poly.getPointByIndex(i), p, poly.getPointByIndex(next));
+//                }
+                count++;
+            }
+        }
+    }
+    
+    if (count % 2 == 1) {
+        std::cout<<"Point inside polygon"<<std::endl;
+        return true;
+    }
+    std::cout<<"Point outside polygon"<<std::endl;
+    return false;
+}
