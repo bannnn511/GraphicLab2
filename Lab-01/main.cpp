@@ -123,9 +123,7 @@ void display(void) {
     }
     
     if (polygon == true) {
-        for (int i =0; i <= poly.size() -1; i++) {
-            glBegin(GL_LINE_STRIP);
-        }
+        glBegin(GL_LINE_STRIP);
         for(int i =0; i < poly.size();i++) {
             glVertex2i(poly[i].x, poly[i].y);
         }
@@ -430,7 +428,7 @@ void BoundaryFill(int x, int y, RGBColor fColor, RGBColor bColor) {
 // MARK:- CHECK POINT INSIDE
 
 bool onSegment(Pixel p1, Pixel p2, Pixel p3) {
-    if (p1.x <= std::max(p2.x, p2.y) && p1.x >= std::min(p2.x, p3.x) && p1.y <= std::max(p2.y, p3.y) && p1.y >= std::min(p2.y, p3.y))
+    if (p1.x <= std::max(p2.x, p3.x) && p1.x >= std::min(p2.x, p3.x) && p1.y <= std::max(p2.y, p3.y) && p1.y >= std::min(p2.y, p3.y))
         return true;
     return false;
 }
