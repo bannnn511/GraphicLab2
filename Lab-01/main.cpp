@@ -462,7 +462,7 @@ bool dotIntersect(Pixel p1, Pixel p2, Pixel p3, Pixel p4) {
 bool isInside(Polygon poly, Pixel p) {
     if (poly.size() < 3) return false;
     
-    Pixel infinity = Pixel(p.y, WIDTH);
+    Pixel infinity = Pixel(WIDTH, p.y);
     
     int count = 0;
     for (int i = 0; i < poly.size()-1; i++) {
