@@ -88,8 +88,8 @@ enum KeyboardButton {
 };
 
 enum Orientation {
-    LockWise,
-    CounterLockWise,
+    ClockWise,
+    CounterClockWise,
     Colinear
 };
 

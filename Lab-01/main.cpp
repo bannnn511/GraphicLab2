@@ -435,18 +435,18 @@ bool onSegment(Pixel p1, Pixel p2, Pixel p3) {
 
 Orientation orientation(Pixel p1, Pixel p2, Pixel p3) {
     int val = (p3.x-p2.x)*(p2.y-p1.y) - (p2.x-p1.x)*(p3.y-p2.y);
-    if (val ==0 ) {
+    if (val == 0 ) {
         return Orientation::Colinear;
     }
-    return val > 1 ? Orientation::LockWise : Orientation::CounterLockWise;
+    return val > 1 ? Orientation::ClockWise : Orientation::CounterClockWise;
     
 }
 
 bool dotIntersect(Pixel p1, Pixel p2, Pixel p3, Pixel p4) {
-    int o1 = orientation(p1, p2, p3);
-    int o2 = orientation(p1, p2, p4);
-    int o3 = orientation(p3, p4, p1);
-    int o4 = orientation(p3, p4, p2);
+    Orientation o1 = orientation(p1, p2, p3);
+    Orientation o2 = orientation(p1, p2, p4);
+    Orientation o3 = orientation(p3, p4, p1);
+    Orientation o4 = orientation(p3, p4, p2);
     
     if (o1 != o2 && o3 != o4)
         return true;
@@ -470,9 +470,9 @@ bool isInside(Polygon poly, Pixel p) {
         if (next <= poly.size()) {
             if (dotIntersect(poly.getPointByIndex(i), poly.getPointByIndex(next), infinity, p)){
                 
-//                if (orientation(poly.getPointByIndex(i), poly.getPointByIndex(next), p) == Orientation::Colinear) {
-//                    return onSegment(poly.getPointByIndex(i), p, poly.getPointByIndex(next));
-//                }
+                if (orientation(p,infinity,poly.getPointByIndex(i)) == Orientation::Colinear) {
+                    return onSegment(poly.getPointByIndex(i), p, infinity);
+                }
                 count++;
             }
         }
